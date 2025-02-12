@@ -8,6 +8,7 @@ import {
   useReadContract,
   useTransactionReceipt,
 } from "wagmi";
+import { ethers } from "ethers";
 interface BuyCoinTokenProps {}
 
 function BuyCoinToken(props: BuyCoinTokenProps) {
@@ -34,7 +35,7 @@ function BuyCoinToken(props: BuyCoinTokenProps) {
         address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
         abi: Info.abi,
         functionName: "setInfo",
-        args: ["tao", Number(18)],
+        args: ["tao", ethers.toBigInt("18")],
       });
     } catch (error) {
       console.error("Error setting info:", error);
