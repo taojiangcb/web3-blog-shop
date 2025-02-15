@@ -2,6 +2,5 @@
 /* tslint:disable */
 /* eslint-disable */
 export { BlogShop__factory } from "./BlogShop__factory";
-export { InfoContract__factory } from "./InfoContract__factory";
 export { JTCoin__factory } from "./JTCoin__factory";
 export { Lock__factory } from "./Lock__factory";

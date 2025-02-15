@@ -4,7 +4,7 @@ export enum Network {
 }
 
 /** 推断当前的网络 */
-export function inferNetWork() {
+export function network() {
   const network = environment.isDev() ? Network.HARDHAT : Network.SEPOLIA;
   return network;
 }

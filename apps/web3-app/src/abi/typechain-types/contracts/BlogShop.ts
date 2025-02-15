@@ -23,42 +23,131 @@ import type {
   TypedContractMethod,
 } from "../common";
 
+export declare namespace BlogShop {
+  export type ArticleStruct = {
+    id: BigNumberish;
+    price: BigNumberish;
+    link: string;
+  };
+
+  export type ArticleStructOutput = [
+    id: bigint,
+    price: bigint,
+    link: string
+  ] & { id: bigint; price: bigint; link: string };
+
+  export type PurchaseStruct = {
+    purchaseId: BigNumberish;
+    buyer: AddressLike;
+    articleId: BigNumberish;
+  };
+
+  export type PurchaseStructOutput = [
+    purchaseId: bigint,
+    buyer: string,
+    articleId: bigint
+  ] & { purchaseId: bigint; buyer: string; articleId: bigint };
+}
+
 export interface BlogShopInterface extends Interface {
   getFunction(
     nameOrSignature:
+      | "DEFAULT_ADMIN_ROLE"
+      | "MINTER_ROLE"
       | "addArticle"
+      | "articleIds"
       | "articles"
-      | "decimals"
-      | "getContractBalance"
-      | "helloWorld"
+      | "getAllArticles"
+      | "getAllPurchases"
+      | "getArticleCount"
+      | "getContractETH"
+      | "getContractJT"
+      | "getPUrchaseByBuyer"
+      | "getPurchaseCount"
+      | "getRoleAdmin"
+      | "grantRole"
+      | "hasRole"
       | "nextArticleId"
       | "owner"
       | "purchaseArticle"
-      | "token"
+      | "purchaseIds"
+      | "purchases"
+      | "renounceRole"
+      | "revokeRole"
+      | "supportsInterface"
+      | "tokenAddress"
       | "withdrawETH"
       | "withdrawJT"
   ): FunctionFragment;
 
   getEvent(
-    nameOrSignatureOrTopic: "ArticleAdded" | "ArticlePurchased" | "ReceivedETH"
+    nameOrSignatureOrTopic:
+      | "ArticleAdded"
+      | "ArticlePurchased"
+      | "RoleAdminChanged"
+      | "RoleGranted"
+      | "RoleRevoked"
   ): EventFragment;
 
+  encodeFunctionData(
+    functionFragment: "DEFAULT_ADMIN_ROLE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "MINTER_ROLE",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "addArticle",
     values: [BigNumberish, string]
   ): string;
   encodeFunctionData(
+    functionFragment: "articleIds",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "articles",
     values: [BigNumberish]
   ): string;
-  encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "getContractBalance",
+    functionFragment: "getAllArticles",
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "helloWorld",
+    functionFragment: "getAllPurchases",
     values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getArticleCount",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getContractETH",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getContractJT",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getPUrchaseByBuyer",
+    values: [AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getPurchaseCount",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getRoleAdmin",
+    values: [BytesLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "grantRole",
+    values: [BytesLike, AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "hasRole",
+    values: [BytesLike, AddressLike]
   ): string;
   encodeFunctionData(
     functionFragment: "nextArticleId",
@@ -69,7 +158,30 @@ export interface BlogShopInterface extends Interface {
     functionFragment: "purchaseArticle",
     values: [BigNumberish]
   ): string;
-  encodeFunctionData(functionFragment: "token", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "purchaseIds",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "purchases",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "renounceRole",
+    values: [BytesLike, AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "revokeRole",
+    values: [BytesLike, AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "supportsInterface",
+    values: [BytesLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "tokenAddress",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "withdrawETH",
     values?: undefined
@@ -79,14 +191,51 @@ export interface BlogShopInterface extends Interface {
     values?: undefined
   ): string;
 
-  decodeFunctionResult(functionFragment: "addArticle", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "articles", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getContractBalance",
+    functionFragment: "DEFAULT_ADMIN_ROLE",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "helloWorld", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "MINTER_ROLE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "addArticle", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "articleIds", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "articles", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getAllArticles",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getAllPurchases",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getArticleCount",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getContractETH",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getContractJT",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getPUrchaseByBuyer",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getPurchaseCount",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getRoleAdmin",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "nextArticleId",
     data: BytesLike
@@ -96,7 +245,24 @@ export interface BlogShopInterface extends Interface {
     functionFragment: "purchaseArticle",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "token", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "purchaseIds",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "purchases", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "renounceRole",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "supportsInterface",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "tokenAddress",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "withdrawETH",
     data: BytesLike
@@ -140,12 +306,57 @@ export namespace ArticlePurchasedEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
-export namespace ReceivedETHEvent {
-  export type InputTuple = [sender: AddressLike, amount: BigNumberish];
-  export type OutputTuple = [sender: string, amount: bigint];
+export namespace RoleAdminChangedEvent {
+  export type InputTuple = [
+    role: BytesLike,
+    previousAdminRole: BytesLike,
+    newAdminRole: BytesLike
+  ];
+  export type OutputTuple = [
+    role: string,
+    previousAdminRole: string,
+    newAdminRole: string
+  ];
   export interface OutputObject {
+    role: string;
+    previousAdminRole: string;
+    newAdminRole: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace RoleGrantedEvent {
+  export type InputTuple = [
+    role: BytesLike,
+    account: AddressLike,
+    sender: AddressLike
+  ];
+  export type OutputTuple = [role: string, account: string, sender: string];
+  export interface OutputObject {
+    role: string;
+    account: string;
     sender: string;
-    amount: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace RoleRevokedEvent {
+  export type InputTuple = [
+    role: BytesLike,
+    account: AddressLike,
+    sender: AddressLike
+  ];
+  export type OutputTuple = [role: string, account: string, sender: string];
+  export interface OutputObject {
+    role: string;
+    account: string;
+    sender: string;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -196,11 +407,17 @@ export interface BlogShop extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
+  DEFAULT_ADMIN_ROLE: TypedContractMethod<[], [string], "view">;
+
+  MINTER_ROLE: TypedContractMethod<[], [string], "view">;
+
   addArticle: TypedContractMethod<
     [priceInJT: BigNumberish, link: string],
     [void],
     "nonpayable"
   >;
+
+  articleIds: TypedContractMethod<[arg0: BigNumberish], [bigint], "view">;
 
   articles: TypedContractMethod<
     [arg0: BigNumberish],
@@ -208,11 +425,45 @@ export interface BlogShop extends BaseContract {
     "view"
   >;
 
-  decimals: TypedContractMethod<[], [bigint], "view">;
+  getAllArticles: TypedContractMethod<
+    [],
+    [BlogShop.ArticleStructOutput[]],
+    "view"
+  >;
 
-  getContractBalance: TypedContractMethod<[], [bigint], "view">;
+  getAllPurchases: TypedContractMethod<
+    [],
+    [BlogShop.PurchaseStructOutput[]],
+    "view"
+  >;
 
-  helloWorld: TypedContractMethod<[], [string], "view">;
+  getArticleCount: TypedContractMethod<[], [bigint], "view">;
+
+  getContractETH: TypedContractMethod<[], [bigint], "view">;
+
+  getContractJT: TypedContractMethod<[], [bigint], "view">;
+
+  getPUrchaseByBuyer: TypedContractMethod<
+    [buyer: AddressLike],
+    [BlogShop.PurchaseStructOutput[]],
+    "view"
+  >;
+
+  getPurchaseCount: TypedContractMethod<[], [bigint], "view">;
+
+  getRoleAdmin: TypedContractMethod<[role: BytesLike], [string], "view">;
+
+  grantRole: TypedContractMethod<
+    [role: BytesLike, account: AddressLike],
+    [void],
+    "nonpayable"
+  >;
+
+  hasRole: TypedContractMethod<
+    [role: BytesLike, account: AddressLike],
+    [boolean],
+    "view"
+  >;
 
   nextArticleId: TypedContractMethod<[], [bigint], "view">;
 
@@ -224,7 +475,39 @@ export interface BlogShop extends BaseContract {
     "nonpayable"
   >;
 
-  token: TypedContractMethod<[], [string], "view">;
+  purchaseIds: TypedContractMethod<[arg0: BigNumberish], [bigint], "view">;
+
+  purchases: TypedContractMethod<
+    [arg0: BigNumberish],
+    [
+      [bigint, string, bigint] & {
+        purchaseId: bigint;
+        buyer: string;
+        articleId: bigint;
+      }
+    ],
+    "view"
+  >;
+
+  renounceRole: TypedContractMethod<
+    [role: BytesLike, callerConfirmation: AddressLike],
+    [void],
+    "nonpayable"
+  >;
+
+  revokeRole: TypedContractMethod<
+    [role: BytesLike, account: AddressLike],
+    [void],
+    "nonpayable"
+  >;
+
+  supportsInterface: TypedContractMethod<
+    [interfaceId: BytesLike],
+    [boolean],
+    "view"
+  >;
+
+  tokenAddress: TypedContractMethod<[], [string], "view">;
 
   withdrawETH: TypedContractMethod<[], [void], "nonpayable">;
 
@@ -235,12 +518,21 @@ export interface BlogShop extends BaseContract {
   ): T;
 
   getFunction(
+    nameOrSignature: "DEFAULT_ADMIN_ROLE"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "MINTER_ROLE"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
     nameOrSignature: "addArticle"
   ): TypedContractMethod<
     [priceInJT: BigNumberish, link: string],
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "articleIds"
+  ): TypedContractMethod<[arg0: BigNumberish], [bigint], "view">;
   getFunction(
     nameOrSignature: "articles"
   ): TypedContractMethod<
@@ -249,14 +541,47 @@ export interface BlogShop extends BaseContract {
     "view"
   >;
   getFunction(
-    nameOrSignature: "decimals"
+    nameOrSignature: "getAllArticles"
+  ): TypedContractMethod<[], [BlogShop.ArticleStructOutput[]], "view">;
+  getFunction(
+    nameOrSignature: "getAllPurchases"
+  ): TypedContractMethod<[], [BlogShop.PurchaseStructOutput[]], "view">;
+  getFunction(
+    nameOrSignature: "getArticleCount"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
-    nameOrSignature: "getContractBalance"
+    nameOrSignature: "getContractETH"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
-    nameOrSignature: "helloWorld"
-  ): TypedContractMethod<[], [string], "view">;
+    nameOrSignature: "getContractJT"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "getPUrchaseByBuyer"
+  ): TypedContractMethod<
+    [buyer: AddressLike],
+    [BlogShop.PurchaseStructOutput[]],
+    "view"
+  >;
+  getFunction(
+    nameOrSignature: "getPurchaseCount"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "getRoleAdmin"
+  ): TypedContractMethod<[role: BytesLike], [string], "view">;
+  getFunction(
+    nameOrSignature: "grantRole"
+  ): TypedContractMethod<
+    [role: BytesLike, account: AddressLike],
+    [void],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "hasRole"
+  ): TypedContractMethod<
+    [role: BytesLike, account: AddressLike],
+    [boolean],
+    "view"
+  >;
   getFunction(
     nameOrSignature: "nextArticleId"
   ): TypedContractMethod<[], [bigint], "view">;
@@ -267,7 +592,40 @@ export interface BlogShop extends BaseContract {
     nameOrSignature: "purchaseArticle"
   ): TypedContractMethod<[articleId: BigNumberish], [void], "nonpayable">;
   getFunction(
-    nameOrSignature: "token"
+    nameOrSignature: "purchaseIds"
+  ): TypedContractMethod<[arg0: BigNumberish], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "purchases"
+  ): TypedContractMethod<
+    [arg0: BigNumberish],
+    [
+      [bigint, string, bigint] & {
+        purchaseId: bigint;
+        buyer: string;
+        articleId: bigint;
+      }
+    ],
+    "view"
+  >;
+  getFunction(
+    nameOrSignature: "renounceRole"
+  ): TypedContractMethod<
+    [role: BytesLike, callerConfirmation: AddressLike],
+    [void],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "revokeRole"
+  ): TypedContractMethod<
+    [role: BytesLike, account: AddressLike],
+    [void],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "supportsInterface"
+  ): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
+  getFunction(
+    nameOrSignature: "tokenAddress"
   ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "withdrawETH"
@@ -291,11 +649,25 @@ export interface BlogShop extends BaseContract {
     ArticlePurchasedEvent.OutputObject
   >;
   getEvent(
-    key: "ReceivedETH"
+    key: "RoleAdminChanged"
   ): TypedContractEvent<
-    ReceivedETHEvent.InputTuple,
-    ReceivedETHEvent.OutputTuple,
-    ReceivedETHEvent.OutputObject
+    RoleAdminChangedEvent.InputTuple,
+    RoleAdminChangedEvent.OutputTuple,
+    RoleAdminChangedEvent.OutputObject
+  >;
+  getEvent(
+    key: "RoleGranted"
+  ): TypedContractEvent<
+    RoleGrantedEvent.InputTuple,
+    RoleGrantedEvent.OutputTuple,
+    RoleGrantedEvent.OutputObject
+  >;
+  getEvent(
+    key: "RoleRevoked"
+  ): TypedContractEvent<
+    RoleRevokedEvent.InputTuple,
+    RoleRevokedEvent.OutputTuple,
+    RoleRevokedEvent.OutputObject
   >;
 
   filters: {
@@ -321,15 +693,37 @@ export interface BlogShop extends BaseContract {
       ArticlePurchasedEvent.OutputObject
     >;
 
-    "ReceivedETH(address,uint256)": TypedContractEvent<
-      ReceivedETHEvent.InputTuple,
-      ReceivedETHEvent.OutputTuple,
-      ReceivedETHEvent.OutputObject
+    "RoleAdminChanged(bytes32,bytes32,bytes32)": TypedContractEvent<
+      RoleAdminChangedEvent.InputTuple,
+      RoleAdminChangedEvent.OutputTuple,
+      RoleAdminChangedEvent.OutputObject
     >;
-    ReceivedETH: TypedContractEvent<
-      ReceivedETHEvent.InputTuple,
-      ReceivedETHEvent.OutputTuple,
-      ReceivedETHEvent.OutputObject
+    RoleAdminChanged: TypedContractEvent<
+      RoleAdminChangedEvent.InputTuple,
+      RoleAdminChangedEvent.OutputTuple,
+      RoleAdminChangedEvent.OutputObject
+    >;
+
+    "RoleGranted(bytes32,address,address)": TypedContractEvent<
+      RoleGrantedEvent.InputTuple,
+      RoleGrantedEvent.OutputTuple,
+      RoleGrantedEvent.OutputObject
+    >;
+    RoleGranted: TypedContractEvent<
+      RoleGrantedEvent.InputTuple,
+      RoleGrantedEvent.OutputTuple,
+      RoleGrantedEvent.OutputObject
+    >;
+
+    "RoleRevoked(bytes32,address,address)": TypedContractEvent<
+      RoleRevokedEvent.InputTuple,
+      RoleRevokedEvent.OutputTuple,
+      RoleRevokedEvent.OutputObject
+    >;
+    RoleRevoked: TypedContractEvent<
+      RoleRevokedEvent.InputTuple,
+      RoleRevokedEvent.OutputTuple,
+      RoleRevokedEvent.OutputObject
     >;
   };
 }

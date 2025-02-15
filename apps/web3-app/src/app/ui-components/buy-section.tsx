@@ -1,9 +1,8 @@
-"use client";
+'use client'
+
 import React from "react";
-import BuyCoinToken from "./by-coin";
-
+import BuyCoinToken from "./buy-coin";
 interface BuySectionProps {}
-
 function BuySection(props: BuySectionProps) {
   return (
     <section className="flex gap-8 items-center backdrop-blur-md rounded-lg">

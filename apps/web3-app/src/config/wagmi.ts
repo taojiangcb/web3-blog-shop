@@ -1,12 +1,12 @@
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
-import { http } from "wagmi";
 import { mainnet, optimism, polygon, sepolia } from "wagmi/chains";
 import { environment } from "./environment";
+import { http, cookieStorage, createConfig, createStorage } from 'wagmi'  
 
 // 配置 Hardhat 本地链
 const hardhatChain = {
   id: 1337,
-  name: "hardhat",
+  name: "Hardhat",
   network: "hardhat",
   iconUrl: "https://hardhat.org/_next/static/media/hardhat-logo.5c5f687b.svg",
   nativeCurrency: {
@@ -33,10 +33,15 @@ export const config = getDefaultConfig({
     : [mainnet, sepolia, polygon, optimism],
   // chains: [hardhatChain],
   transports: {
+    [mainnet.id]: http(),  
     // 替换之前 不可用的 https://rpc.sepolia.org/
+    [hardhatChain.id]: http("http://127.0.0.1:8545"),
     [sepolia.id]: http(
       "https://sepolia.infura.io/v3/a16a2a72cbc24f73a889bbac478383c9"
     ),
   },
+  storage: createStorage({  
+    storage: cookieStorage,  
+  }), 
   ssr: true,
 });

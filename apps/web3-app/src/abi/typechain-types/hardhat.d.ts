@@ -58,10 +58,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.BlogShop__factory>;
     getContractFactory(
-      name: "InfoContract",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.InfoContract__factory>;
-    getContractFactory(
       name: "JTCoin",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.JTCoin__factory>;
@@ -126,11 +122,6 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.BlogShop>;
     getContractAt(
-      name: "InfoContract",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.InfoContract>;
-    getContractAt(
       name: "JTCoin",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -185,10 +176,6 @@ declare module "hardhat/types/runtime" {
       name: "BlogShop",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BlogShop>;
-    deployContract(
-      name: "InfoContract",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.InfoContract>;
     deployContract(
       name: "JTCoin",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -253,11 +240,6 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BlogShop>;
-    deployContract(
-      name: "InfoContract",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.InfoContract>;
     deployContract(
       name: "JTCoin",
       args: any[],

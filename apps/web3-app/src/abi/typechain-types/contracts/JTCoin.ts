@@ -27,37 +27,59 @@ export interface JTCoinInterface extends Interface {
   getFunction(
     nameOrSignature:
       | "DEFAULT_ADMIN_ROLE"
+      | "MAX_SUPPLY"
       | "MINTER_ROLE"
       | "TOKEN_RATE"
       | "allowance"
       | "approve"
       | "balanceOf"
+      | "buyTokens"
+      | "consumeToken"
       | "decimals"
+      | "getContractETH"
       | "getRoleAdmin"
+      | "getTokenPool"
+      | "grantMinterRole"
       | "grantRole"
+      | "hasMinterRole"
       | "hasRole"
       | "mint"
+      | "mint_100"
+      | "mint_1000000"
       | "name"
+      | "owner"
       | "renounceRole"
       | "revokeRole"
+      | "setRate"
       | "supportsInterface"
       | "symbol"
       | "totalSupply"
       | "transfer"
       | "transferFrom"
+      | "withdrawETH"
+      | "withdrawJTCoin"
   ): FunctionFragment;
 
   getEvent(
     nameOrSignatureOrTopic:
       | "Approval"
+      | "ConsumeToken"
+      | "MintToken"
+      | "ReceivedETH"
+      | "RemitToken"
       | "RoleAdminChanged"
       | "RoleGranted"
       | "RoleRevoked"
       | "Transfer"
+      | "Withdraw"
   ): EventFragment;
 
   encodeFunctionData(
     functionFragment: "DEFAULT_ADMIN_ROLE",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "MAX_SUPPLY",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -80,14 +102,35 @@ export interface JTCoinInterface extends Interface {
     functionFragment: "balanceOf",
     values: [AddressLike]
   ): string;
+  encodeFunctionData(functionFragment: "buyTokens", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "consumeToken",
+    values: [AddressLike, BigNumberish]
+  ): string;
   encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "getContractETH",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "getRoleAdmin",
     values: [BytesLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "getTokenPool",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "grantMinterRole",
+    values: [AddressLike]
+  ): string;
+  encodeFunctionData(
     functionFragment: "grantRole",
     values: [BytesLike, AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "hasMinterRole",
+    values: [AddressLike]
   ): string;
   encodeFunctionData(
     functionFragment: "hasRole",
@@ -97,7 +140,13 @@ export interface JTCoinInterface extends Interface {
     functionFragment: "mint",
     values: [AddressLike, BigNumberish]
   ): string;
+  encodeFunctionData(functionFragment: "mint_100", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "mint_1000000",
+    values?: undefined
+  ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
+  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "renounceRole",
     values: [BytesLike, AddressLike]
@@ -105,6 +154,10 @@ export interface JTCoinInterface extends Interface {
   encodeFunctionData(
     functionFragment: "revokeRole",
     values: [BytesLike, AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setRate",
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
@@ -123,11 +176,20 @@ export interface JTCoinInterface extends Interface {
     functionFragment: "transferFrom",
     values: [AddressLike, AddressLike, BigNumberish]
   ): string;
+  encodeFunctionData(
+    functionFragment: "withdrawETH",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "withdrawJTCoin",
+    values?: undefined
+  ): string;
 
   decodeFunctionResult(
     functionFragment: "DEFAULT_ADMIN_ROLE",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "MAX_SUPPLY", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "MINTER_ROLE",
     data: BytesLike
@@ -136,20 +198,48 @@ export interface JTCoinInterface extends Interface {
   decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "buyTokens", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "consumeToken",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getContractETH",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "getRoleAdmin",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "getTokenPool",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "grantMinterRole",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "hasMinterRole",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "mint_100", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "mint_1000000",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "renounceRole",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "setRate", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
     data: BytesLike
@@ -162,6 +252,14 @@ export interface JTCoinInterface extends Interface {
   decodeFunctionResult(functionFragment: "transfer", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "transferFrom",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "withdrawETH",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "withdrawJTCoin",
     data: BytesLike
   ): Result;
 }
@@ -177,6 +275,63 @@ export namespace ApprovalEvent {
     owner: string;
     spender: string;
     value: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace ConsumeTokenEvent {
+  export type InputTuple = [sender: AddressLike, amount: BigNumberish];
+  export type OutputTuple = [sender: string, amount: bigint];
+  export interface OutputObject {
+    sender: string;
+    amount: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace MintTokenEvent {
+  export type InputTuple = [
+    sender: AddressLike,
+    to: AddressLike,
+    amount: BigNumberish
+  ];
+  export type OutputTuple = [sender: string, to: string, amount: bigint];
+  export interface OutputObject {
+    sender: string;
+    to: string;
+    amount: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace ReceivedETHEvent {
+  export type InputTuple = [sender: AddressLike, amount: BigNumberish];
+  export type OutputTuple = [sender: string, amount: bigint];
+  export interface OutputObject {
+    sender: string;
+    amount: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace RemitTokenEvent {
+  export type InputTuple = [sender: AddressLike, amount: BigNumberish];
+  export type OutputTuple = [sender: string, amount: bigint];
+  export interface OutputObject {
+    sender: string;
+    amount: bigint;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -260,6 +415,24 @@ export namespace TransferEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
+export namespace WithdrawEvent {
+  export type InputTuple = [
+    sender: AddressLike,
+    coinType: string,
+    amount: BigNumberish
+  ];
+  export type OutputTuple = [sender: string, coinType: string, amount: bigint];
+  export interface OutputObject {
+    sender: string;
+    coinType: string;
+    amount: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
 export interface JTCoin extends BaseContract {
   connect(runner?: ContractRunner | null): JTCoin;
   waitForDeployment(): Promise<this>;
@@ -305,6 +478,8 @@ export interface JTCoin extends BaseContract {
 
   DEFAULT_ADMIN_ROLE: TypedContractMethod<[], [string], "view">;
 
+  MAX_SUPPLY: TypedContractMethod<[], [bigint], "view">;
+
   MINTER_ROLE: TypedContractMethod<[], [string], "view">;
 
   TOKEN_RATE: TypedContractMethod<[], [bigint], "view">;
@@ -323,15 +498,35 @@ export interface JTCoin extends BaseContract {
 
   balanceOf: TypedContractMethod<[account: AddressLike], [bigint], "view">;
 
+  buyTokens: TypedContractMethod<[], [void], "payable">;
+
+  consumeToken: TypedContractMethod<
+    [from: AddressLike, amount: BigNumberish],
+    [boolean],
+    "nonpayable"
+  >;
+
   decimals: TypedContractMethod<[], [bigint], "view">;
 
+  getContractETH: TypedContractMethod<[], [bigint], "view">;
+
   getRoleAdmin: TypedContractMethod<[role: BytesLike], [string], "view">;
+
+  getTokenPool: TypedContractMethod<[], [bigint], "view">;
+
+  grantMinterRole: TypedContractMethod<
+    [account: AddressLike],
+    [void],
+    "nonpayable"
+  >;
 
   grantRole: TypedContractMethod<
     [role: BytesLike, account: AddressLike],
     [void],
     "nonpayable"
   >;
+
+  hasMinterRole: TypedContractMethod<[account: AddressLike], [boolean], "view">;
 
   hasRole: TypedContractMethod<
     [role: BytesLike, account: AddressLike],
@@ -345,7 +540,13 @@ export interface JTCoin extends BaseContract {
     "nonpayable"
   >;
 
+  mint_100: TypedContractMethod<[], [void], "nonpayable">;
+
+  mint_1000000: TypedContractMethod<[], [void], "nonpayable">;
+
   name: TypedContractMethod<[], [string], "view">;
+
+  owner: TypedContractMethod<[], [string], "view">;
 
   renounceRole: TypedContractMethod<
     [role: BytesLike, callerConfirmation: AddressLike],
@@ -358,6 +559,8 @@ export interface JTCoin extends BaseContract {
     [void],
     "nonpayable"
   >;
+
+  setRate: TypedContractMethod<[rate: BigNumberish], [void], "nonpayable">;
 
   supportsInterface: TypedContractMethod<
     [interfaceId: BytesLike],
@@ -381,6 +584,10 @@ export interface JTCoin extends BaseContract {
     "nonpayable"
   >;
 
+  withdrawETH: TypedContractMethod<[], [void], "nonpayable">;
+
+  withdrawJTCoin: TypedContractMethod<[], [void], "nonpayable">;
+
   getFunction<T extends ContractMethod = ContractMethod>(
     key: string | FunctionFragment
   ): T;
@@ -388,6 +595,9 @@ export interface JTCoin extends BaseContract {
   getFunction(
     nameOrSignature: "DEFAULT_ADMIN_ROLE"
   ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "MAX_SUPPLY"
+  ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "MINTER_ROLE"
   ): TypedContractMethod<[], [string], "view">;
@@ -412,11 +622,30 @@ export interface JTCoin extends BaseContract {
     nameOrSignature: "balanceOf"
   ): TypedContractMethod<[account: AddressLike], [bigint], "view">;
   getFunction(
+    nameOrSignature: "buyTokens"
+  ): TypedContractMethod<[], [void], "payable">;
+  getFunction(
+    nameOrSignature: "consumeToken"
+  ): TypedContractMethod<
+    [from: AddressLike, amount: BigNumberish],
+    [boolean],
+    "nonpayable"
+  >;
+  getFunction(
     nameOrSignature: "decimals"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "getContractETH"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "getRoleAdmin"
   ): TypedContractMethod<[role: BytesLike], [string], "view">;
+  getFunction(
+    nameOrSignature: "getTokenPool"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "grantMinterRole"
+  ): TypedContractMethod<[account: AddressLike], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "grantRole"
   ): TypedContractMethod<
@@ -424,6 +653,9 @@ export interface JTCoin extends BaseContract {
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "hasMinterRole"
+  ): TypedContractMethod<[account: AddressLike], [boolean], "view">;
   getFunction(
     nameOrSignature: "hasRole"
   ): TypedContractMethod<
@@ -439,7 +671,16 @@ export interface JTCoin extends BaseContract {
     "nonpayable"
   >;
   getFunction(
+    nameOrSignature: "mint_100"
+  ): TypedContractMethod<[], [void], "nonpayable">;
+  getFunction(
+    nameOrSignature: "mint_1000000"
+  ): TypedContractMethod<[], [void], "nonpayable">;
+  getFunction(
     nameOrSignature: "name"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "owner"
   ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "renounceRole"
@@ -455,6 +696,9 @@ export interface JTCoin extends BaseContract {
     [void],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "setRate"
+  ): TypedContractMethod<[rate: BigNumberish], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "supportsInterface"
   ): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
@@ -478,6 +722,12 @@ export interface JTCoin extends BaseContract {
     [boolean],
     "nonpayable"
   >;
+  getFunction(
+    nameOrSignature: "withdrawETH"
+  ): TypedContractMethod<[], [void], "nonpayable">;
+  getFunction(
+    nameOrSignature: "withdrawJTCoin"
+  ): TypedContractMethod<[], [void], "nonpayable">;
 
   getEvent(
     key: "Approval"
@@ -485,6 +735,34 @@ export interface JTCoin extends BaseContract {
     ApprovalEvent.InputTuple,
     ApprovalEvent.OutputTuple,
     ApprovalEvent.OutputObject
+  >;
+  getEvent(
+    key: "ConsumeToken"
+  ): TypedContractEvent<
+    ConsumeTokenEvent.InputTuple,
+    ConsumeTokenEvent.OutputTuple,
+    ConsumeTokenEvent.OutputObject
+  >;
+  getEvent(
+    key: "MintToken"
+  ): TypedContractEvent<
+    MintTokenEvent.InputTuple,
+    MintTokenEvent.OutputTuple,
+    MintTokenEvent.OutputObject
+  >;
+  getEvent(
+    key: "ReceivedETH"
+  ): TypedContractEvent<
+    ReceivedETHEvent.InputTuple,
+    ReceivedETHEvent.OutputTuple,
+    ReceivedETHEvent.OutputObject
+  >;
+  getEvent(
+    key: "RemitToken"
+  ): TypedContractEvent<
+    RemitTokenEvent.InputTuple,
+    RemitTokenEvent.OutputTuple,
+    RemitTokenEvent.OutputObject
   >;
   getEvent(
     key: "RoleAdminChanged"
@@ -514,6 +792,13 @@ export interface JTCoin extends BaseContract {
     TransferEvent.OutputTuple,
     TransferEvent.OutputObject
   >;
+  getEvent(
+    key: "Withdraw"
+  ): TypedContractEvent<
+    WithdrawEvent.InputTuple,
+    WithdrawEvent.OutputTuple,
+    WithdrawEvent.OutputObject
+  >;
 
   filters: {
     "Approval(address,address,uint256)": TypedContractEvent<
@@ -525,6 +810,50 @@ export interface JTCoin extends BaseContract {
       ApprovalEvent.InputTuple,
       ApprovalEvent.OutputTuple,
       ApprovalEvent.OutputObject
+    >;
+
+    "ConsumeToken(address,uint256)": TypedContractEvent<
+      ConsumeTokenEvent.InputTuple,
+      ConsumeTokenEvent.OutputTuple,
+      ConsumeTokenEvent.OutputObject
+    >;
+    ConsumeToken: TypedContractEvent<
+      ConsumeTokenEvent.InputTuple,
+      ConsumeTokenEvent.OutputTuple,
+      ConsumeTokenEvent.OutputObject
+    >;
+
+    "MintToken(address,address,uint256)": TypedContractEvent<
+      MintTokenEvent.InputTuple,
+      MintTokenEvent.OutputTuple,
+      MintTokenEvent.OutputObject
+    >;
+    MintToken: TypedContractEvent<
+      MintTokenEvent.InputTuple,
+      MintTokenEvent.OutputTuple,
+      MintTokenEvent.OutputObject
+    >;
+
+    "ReceivedETH(address,uint256)": TypedContractEvent<
+      ReceivedETHEvent.InputTuple,
+      ReceivedETHEvent.OutputTuple,
+      ReceivedETHEvent.OutputObject
+    >;
+    ReceivedETH: TypedContractEvent<
+      ReceivedETHEvent.InputTuple,
+      ReceivedETHEvent.OutputTuple,
+      ReceivedETHEvent.OutputObject
+    >;
+
+    "RemitToken(address,uint256)": TypedContractEvent<
+      RemitTokenEvent.InputTuple,
+      RemitTokenEvent.OutputTuple,
+      RemitTokenEvent.OutputObject
+    >;
+    RemitToken: TypedContractEvent<
+      RemitTokenEvent.InputTuple,
+      RemitTokenEvent.OutputTuple,
+      RemitTokenEvent.OutputObject
     >;
 
     "RoleAdminChanged(bytes32,bytes32,bytes32)": TypedContractEvent<
@@ -569,6 +898,17 @@ export interface JTCoin extends BaseContract {
       TransferEvent.InputTuple,
       TransferEvent.OutputTuple,
       TransferEvent.OutputObject
+    >;
+
+    "Withdraw(address,string,uint256)": TypedContractEvent<
+      WithdrawEvent.InputTuple,
+      WithdrawEvent.OutputTuple,
+      WithdrawEvent.OutputObject
+    >;
+    Withdraw: TypedContractEvent<
+      WithdrawEvent.InputTuple,
+      WithdrawEvent.OutputTuple,
+      WithdrawEvent.OutputObject
     >;
   };
 }

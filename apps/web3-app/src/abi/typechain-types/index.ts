@@ -28,8 +28,6 @@ export type { IERC165 } from "./@openzeppelin/contracts/utils/introspection/IERC
 export { IERC165__factory } from "./factories/@openzeppelin/contracts/utils/introspection/IERC165__factory";
 export type { BlogShop } from "./contracts/BlogShop";
 export { BlogShop__factory } from "./factories/contracts/BlogShop__factory";
-export type { InfoContract } from "./contracts/InfoContract";
-export { InfoContract__factory } from "./factories/contracts/InfoContract__factory";
 export type { JTCoin } from "./contracts/JTCoin";
 export { JTCoin__factory } from "./factories/contracts/JTCoin__factory";
 export type { Lock } from "./contracts/Lock";

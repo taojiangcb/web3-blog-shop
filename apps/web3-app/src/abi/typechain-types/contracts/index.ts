@@ -2,6 +2,5 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { BlogShop } from "./BlogShop";
-export type { InfoContract } from "./InfoContract";
 export type { JTCoin } from "./JTCoin";
 export type { Lock } from "./Lock";
