@@ -2,6 +2,8 @@
 
 import React from "react";
 import BuyCoinToken from "./buy-coin";
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type 
 interface BuySectionProps {}
 function BuySection(props: BuySectionProps) {
   return (

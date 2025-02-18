@@ -34,7 +34,6 @@ export interface JTCoinInterface extends Interface {
       | "approve"
       | "balanceOf"
       | "buyTokens"
-      | "consumeToken"
       | "decimals"
       | "getContractETH"
       | "getRoleAdmin"
@@ -103,10 +102,6 @@ export interface JTCoinInterface extends Interface {
     values: [AddressLike]
   ): string;
   encodeFunctionData(functionFragment: "buyTokens", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "consumeToken",
-    values: [AddressLike, BigNumberish]
-  ): string;
   encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "getContractETH",
@@ -199,10 +194,6 @@ export interface JTCoinInterface extends Interface {
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "buyTokens", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "consumeToken",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getContractETH",
@@ -500,12 +491,6 @@ export interface JTCoin extends BaseContract {
 
   buyTokens: TypedContractMethod<[], [void], "payable">;
 
-  consumeToken: TypedContractMethod<
-    [from: AddressLike, amount: BigNumberish],
-    [boolean],
-    "nonpayable"
-  >;
-
   decimals: TypedContractMethod<[], [bigint], "view">;
 
   getContractETH: TypedContractMethod<[], [bigint], "view">;
@@ -624,13 +609,6 @@ export interface JTCoin extends BaseContract {
   getFunction(
     nameOrSignature: "buyTokens"
   ): TypedContractMethod<[], [void], "payable">;
-  getFunction(
-    nameOrSignature: "consumeToken"
-  ): TypedContractMethod<
-    [from: AddressLike, amount: BigNumberish],
-    [boolean],
-    "nonpayable"
-  >;
   getFunction(
     nameOrSignature: "decimals"
   ): TypedContractMethod<[], [bigint], "view">;

@@ -5,7 +5,7 @@ export enum Network {
 
 /** 推断当前的网络 */
 export function network() {
-  const network = environment.isDev() ? Network.HARDHAT : Network.SEPOLIA;
+  const network = process.env.NEXT_PUBLIC_NETWORK as Network;
   return network;
 }
 

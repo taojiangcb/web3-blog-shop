@@ -28,7 +28,7 @@ const hardhatChain = {
 export const config = getDefaultConfig({
   appName: "Web3 app",
   projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || "",
-  chains: environment.isDev()
+  chains: process.env.NEXT_PUBLIC_NETWORK === 'hardhat'
     ? [mainnet, sepolia, polygon, optimism, hardhatChain]
     : [mainnet, sepolia, polygon, optimism],
   // chains: [hardhatChain],

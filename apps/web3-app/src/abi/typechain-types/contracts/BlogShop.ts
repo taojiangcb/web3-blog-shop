@@ -27,14 +27,30 @@ export declare namespace BlogShop {
   export type ArticleStruct = {
     id: BigNumberish;
     price: BigNumberish;
+    title: string;
+    description: string;
+    image: string;
     link: string;
+    createTime: string;
   };
 
   export type ArticleStructOutput = [
     id: bigint,
     price: bigint,
-    link: string
-  ] & { id: bigint; price: bigint; link: string };
+    title: string,
+    description: string,
+    image: string,
+    link: string,
+    createTime: string
+  ] & {
+    id: bigint;
+    price: bigint;
+    title: string;
+    description: string;
+    image: string;
+    link: string;
+    createTime: string;
+  };
 
   export type PurchaseStruct = {
     purchaseId: BigNumberish;
@@ -47,6 +63,22 @@ export declare namespace BlogShop {
     buyer: string,
     articleId: bigint
   ] & { purchaseId: bigint; buyer: string; articleId: bigint };
+
+  export type PurchasedListItemStruct = {
+    article: BlogShop.ArticleStruct;
+    count: BigNumberish;
+    isBought: boolean;
+  };
+
+  export type PurchasedListItemStructOutput = [
+    article: BlogShop.ArticleStructOutput,
+    count: bigint,
+    isBought: boolean
+  ] & {
+    article: BlogShop.ArticleStructOutput;
+    count: bigint;
+    isBought: boolean;
+  };
 }
 
 export interface BlogShopInterface extends Interface {
@@ -57,9 +89,11 @@ export interface BlogShopInterface extends Interface {
       | "addArticle"
       | "articleIds"
       | "articles"
+      | "clearArticles"
       | "getAllArticles"
       | "getAllPurchases"
       | "getArticleCount"
+      | "getArticleItemsForBuy"
       | "getContractETH"
       | "getContractJT"
       | "getPUrchaseByBuyer"
@@ -70,10 +104,15 @@ export interface BlogShopInterface extends Interface {
       | "nextArticleId"
       | "owner"
       | "purchaseArticle"
+      | "purchaseCount"
       | "purchaseIds"
       | "purchases"
+      | "removeArticle"
       | "renounceRole"
       | "revokeRole"
+      | "setLink"
+      | "setPrice"
+      | "setTitle"
       | "supportsInterface"
       | "tokenAddress"
       | "withdrawETH"
@@ -84,6 +123,8 @@ export interface BlogShopInterface extends Interface {
     nameOrSignatureOrTopic:
       | "ArticleAdded"
       | "ArticlePurchased"
+      | "ClearArticles"
+      | "RemovedArticle"
       | "RoleAdminChanged"
       | "RoleGranted"
       | "RoleRevoked"
@@ -99,7 +140,7 @@ export interface BlogShopInterface extends Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "addArticle",
-    values: [BigNumberish, string]
+    values: [BigNumberish, string, string, string, string, string]
   ): string;
   encodeFunctionData(
     functionFragment: "articleIds",
@@ -108,6 +149,10 @@ export interface BlogShopInterface extends Interface {
   encodeFunctionData(
     functionFragment: "articles",
     values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "clearArticles",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "getAllArticles",
@@ -119,6 +164,10 @@ export interface BlogShopInterface extends Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "getArticleCount",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getArticleItemsForBuy",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -159,11 +208,19 @@ export interface BlogShopInterface extends Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "purchaseCount",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "purchaseIds",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "purchases",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "removeArticle",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
@@ -173,6 +230,18 @@ export interface BlogShopInterface extends Interface {
   encodeFunctionData(
     functionFragment: "revokeRole",
     values: [BytesLike, AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setLink",
+    values: [BigNumberish, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setPrice",
+    values: [BigNumberish, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setTitle",
+    values: [BigNumberish, string]
   ): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
@@ -203,6 +272,10 @@ export interface BlogShopInterface extends Interface {
   decodeFunctionResult(functionFragment: "articleIds", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "articles", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "clearArticles",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "getAllArticles",
     data: BytesLike
   ): Result;
@@ -212,6 +285,10 @@ export interface BlogShopInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "getArticleCount",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getArticleItemsForBuy",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -246,15 +323,26 @@ export interface BlogShopInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "purchaseCount",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "purchaseIds",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "purchases", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "removeArticle",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "renounceRole",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "setLink", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "setPrice", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "setTitle", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
     data: BytesLike
@@ -272,15 +360,15 @@ export interface BlogShopInterface extends Interface {
 
 export namespace ArticleAddedEvent {
   export type InputTuple = [
+    sender: AddressLike,
     articleId: BigNumberish,
-    price: BigNumberish,
-    link: string
+    title: string
   ];
-  export type OutputTuple = [articleId: bigint, price: bigint, link: string];
+  export type OutputTuple = [sender: string, articleId: bigint, title: string];
   export interface OutputObject {
+    sender: string;
     articleId: bigint;
-    price: bigint;
-    link: string;
+    title: string;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -299,6 +387,36 @@ export namespace ArticlePurchasedEvent {
     buyer: string;
     articleId: bigint;
     link: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace ClearArticlesEvent {
+  export type InputTuple = [sender: AddressLike];
+  export type OutputTuple = [sender: string];
+  export interface OutputObject {
+    sender: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace RemovedArticleEvent {
+  export type InputTuple = [
+    sender: AddressLike,
+    articleId: BigNumberish,
+    title: string
+  ];
+  export type OutputTuple = [sender: string, articleId: bigint, title: string];
+  export interface OutputObject {
+    sender: string;
+    articleId: bigint;
+    title: string;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -412,7 +530,14 @@ export interface BlogShop extends BaseContract {
   MINTER_ROLE: TypedContractMethod<[], [string], "view">;
 
   addArticle: TypedContractMethod<
-    [priceInJT: BigNumberish, link: string],
+    [
+      price: BigNumberish,
+      title: string,
+      description: string,
+      image: string,
+      link: string,
+      createTime: string
+    ],
     [void],
     "nonpayable"
   >;
@@ -421,9 +546,21 @@ export interface BlogShop extends BaseContract {
 
   articles: TypedContractMethod<
     [arg0: BigNumberish],
-    [[bigint, bigint, string] & { id: bigint; price: bigint; link: string }],
+    [
+      [bigint, bigint, string, string, string, string, string] & {
+        id: bigint;
+        price: bigint;
+        title: string;
+        description: string;
+        image: string;
+        link: string;
+        createTime: string;
+      }
+    ],
     "view"
   >;
+
+  clearArticles: TypedContractMethod<[], [void], "nonpayable">;
 
   getAllArticles: TypedContractMethod<
     [],
@@ -438,6 +575,12 @@ export interface BlogShop extends BaseContract {
   >;
 
   getArticleCount: TypedContractMethod<[], [bigint], "view">;
+
+  getArticleItemsForBuy: TypedContractMethod<
+    [],
+    [BlogShop.PurchasedListItemStructOutput[]],
+    "view"
+  >;
 
   getContractETH: TypedContractMethod<[], [bigint], "view">;
 
@@ -475,6 +618,8 @@ export interface BlogShop extends BaseContract {
     "nonpayable"
   >;
 
+  purchaseCount: TypedContractMethod<[arg0: BigNumberish], [bigint], "view">;
+
   purchaseIds: TypedContractMethod<[arg0: BigNumberish], [bigint], "view">;
 
   purchases: TypedContractMethod<
@@ -489,6 +634,12 @@ export interface BlogShop extends BaseContract {
     "view"
   >;
 
+  removeArticle: TypedContractMethod<
+    [articleId: BigNumberish],
+    [boolean],
+    "nonpayable"
+  >;
+
   renounceRole: TypedContractMethod<
     [role: BytesLike, callerConfirmation: AddressLike],
     [void],
@@ -498,6 +649,24 @@ export interface BlogShop extends BaseContract {
   revokeRole: TypedContractMethod<
     [role: BytesLike, account: AddressLike],
     [void],
+    "nonpayable"
+  >;
+
+  setLink: TypedContractMethod<
+    [articleId: BigNumberish, link: string],
+    [boolean],
+    "nonpayable"
+  >;
+
+  setPrice: TypedContractMethod<
+    [articleId: BigNumberish, price: BigNumberish],
+    [boolean],
+    "nonpayable"
+  >;
+
+  setTitle: TypedContractMethod<
+    [articleId: BigNumberish, title: string],
+    [boolean],
     "nonpayable"
   >;
 
@@ -526,7 +695,14 @@ export interface BlogShop extends BaseContract {
   getFunction(
     nameOrSignature: "addArticle"
   ): TypedContractMethod<
-    [priceInJT: BigNumberish, link: string],
+    [
+      price: BigNumberish,
+      title: string,
+      description: string,
+      image: string,
+      link: string,
+      createTime: string
+    ],
     [void],
     "nonpayable"
   >;
@@ -537,9 +713,22 @@ export interface BlogShop extends BaseContract {
     nameOrSignature: "articles"
   ): TypedContractMethod<
     [arg0: BigNumberish],
-    [[bigint, bigint, string] & { id: bigint; price: bigint; link: string }],
+    [
+      [bigint, bigint, string, string, string, string, string] & {
+        id: bigint;
+        price: bigint;
+        title: string;
+        description: string;
+        image: string;
+        link: string;
+        createTime: string;
+      }
+    ],
     "view"
   >;
+  getFunction(
+    nameOrSignature: "clearArticles"
+  ): TypedContractMethod<[], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "getAllArticles"
   ): TypedContractMethod<[], [BlogShop.ArticleStructOutput[]], "view">;
@@ -549,6 +738,13 @@ export interface BlogShop extends BaseContract {
   getFunction(
     nameOrSignature: "getArticleCount"
   ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "getArticleItemsForBuy"
+  ): TypedContractMethod<
+    [],
+    [BlogShop.PurchasedListItemStructOutput[]],
+    "view"
+  >;
   getFunction(
     nameOrSignature: "getContractETH"
   ): TypedContractMethod<[], [bigint], "view">;
@@ -592,6 +788,9 @@ export interface BlogShop extends BaseContract {
     nameOrSignature: "purchaseArticle"
   ): TypedContractMethod<[articleId: BigNumberish], [void], "nonpayable">;
   getFunction(
+    nameOrSignature: "purchaseCount"
+  ): TypedContractMethod<[arg0: BigNumberish], [bigint], "view">;
+  getFunction(
     nameOrSignature: "purchaseIds"
   ): TypedContractMethod<[arg0: BigNumberish], [bigint], "view">;
   getFunction(
@@ -608,6 +807,9 @@ export interface BlogShop extends BaseContract {
     "view"
   >;
   getFunction(
+    nameOrSignature: "removeArticle"
+  ): TypedContractMethod<[articleId: BigNumberish], [boolean], "nonpayable">;
+  getFunction(
     nameOrSignature: "renounceRole"
   ): TypedContractMethod<
     [role: BytesLike, callerConfirmation: AddressLike],
@@ -619,6 +821,27 @@ export interface BlogShop extends BaseContract {
   ): TypedContractMethod<
     [role: BytesLike, account: AddressLike],
     [void],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "setLink"
+  ): TypedContractMethod<
+    [articleId: BigNumberish, link: string],
+    [boolean],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "setPrice"
+  ): TypedContractMethod<
+    [articleId: BigNumberish, price: BigNumberish],
+    [boolean],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "setTitle"
+  ): TypedContractMethod<
+    [articleId: BigNumberish, title: string],
+    [boolean],
     "nonpayable"
   >;
   getFunction(
@@ -649,6 +872,20 @@ export interface BlogShop extends BaseContract {
     ArticlePurchasedEvent.OutputObject
   >;
   getEvent(
+    key: "ClearArticles"
+  ): TypedContractEvent<
+    ClearArticlesEvent.InputTuple,
+    ClearArticlesEvent.OutputTuple,
+    ClearArticlesEvent.OutputObject
+  >;
+  getEvent(
+    key: "RemovedArticle"
+  ): TypedContractEvent<
+    RemovedArticleEvent.InputTuple,
+    RemovedArticleEvent.OutputTuple,
+    RemovedArticleEvent.OutputObject
+  >;
+  getEvent(
     key: "RoleAdminChanged"
   ): TypedContractEvent<
     RoleAdminChangedEvent.InputTuple,
@@ -671,7 +908,7 @@ export interface BlogShop extends BaseContract {
   >;
 
   filters: {
-    "ArticleAdded(uint256,uint256,string)": TypedContractEvent<
+    "ArticleAdded(address,uint256,string)": TypedContractEvent<
       ArticleAddedEvent.InputTuple,
       ArticleAddedEvent.OutputTuple,
       ArticleAddedEvent.OutputObject
@@ -691,6 +928,28 @@ export interface BlogShop extends BaseContract {
       ArticlePurchasedEvent.InputTuple,
       ArticlePurchasedEvent.OutputTuple,
       ArticlePurchasedEvent.OutputObject
+    >;
+
+    "ClearArticles(address)": TypedContractEvent<
+      ClearArticlesEvent.InputTuple,
+      ClearArticlesEvent.OutputTuple,
+      ClearArticlesEvent.OutputObject
+    >;
+    ClearArticles: TypedContractEvent<
+      ClearArticlesEvent.InputTuple,
+      ClearArticlesEvent.OutputTuple,
+      ClearArticlesEvent.OutputObject
+    >;
+
+    "RemovedArticle(address,uint256,string)": TypedContractEvent<
+      RemovedArticleEvent.InputTuple,
+      RemovedArticleEvent.OutputTuple,
+      RemovedArticleEvent.OutputObject
+    >;
+    RemovedArticle: TypedContractEvent<
+      RemovedArticleEvent.InputTuple,
+      RemovedArticleEvent.OutputTuple,
+      RemovedArticleEvent.OutputObject
     >;
 
     "RoleAdminChanged(bytes32,bytes32,bytes32)": TypedContractEvent<

@@ -1,3 +1,5 @@
+"use client";
+
 import { MutateOptions } from "@tanstack/react-query";
 import { useCallback, useEffect, useState } from "react";
 import { ContractFunctionParameters } from "viem";
@@ -12,7 +14,10 @@ import { ethers } from "ethers";
 
 export default function useByTokens(accountAddress: `0x${string}`) {
   const [loading, setLoading] = useState(false);
-  const [actionOptions, setOpt] = useState<any>();
+  const [actionOptions, setOpt] = useState<{
+    onError?: (error: Error) => void;
+    onSuccess?: (data: unknown) => void;
+  }>();
 
   const tokenAddress = getContractAddress(
     Contracts.JTCoin.contractName
@@ -38,8 +43,8 @@ export default function useByTokens(accountAddress: `0x${string}`) {
   async function buy(
     params: ContractFunctionParameters & { value: bigint },
     options?: {
-      onError?: (error: any) => void;
-      onSuccess?: (data: any) => void;
+      onError?: (error: Error) => void;
+      onSuccess?: (data: unknown) => void;
     }
   ) {
     const simulateTransaction = async (amount: bigint) => {
@@ -52,13 +57,14 @@ export default function useByTokens(accountAddress: `0x${string}`) {
           address: tokenAddress as `0x${string}`,
           abi: Contracts.JTCoin.abi,
           functionName: "buyTokens",
+          args: [],
           value: amount,
           account: accountAddress,
         });
         return true; // 模拟成功
       } catch (error) {
         console.error("Transaction simulation failed:", error);
-        actionOptions?.onError(error);
+        actionOptions?.onError?.(error as Error);
         return false; // 模拟失败
       }
     };
@@ -82,7 +88,7 @@ export default function useByTokens(accountAddress: `0x${string}`) {
   useEffect(() => {
     if (writeError || txError) {
       setLoading(false);
-      actionOptions?.onError?.(writeError || txError);
+      actionOptions?.onError?.((writeError || txError) as Error);
     }
   }, [writeError, txError, txData]);
 

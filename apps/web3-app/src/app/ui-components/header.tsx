@@ -6,7 +6,7 @@ import { InteractiveLogo } from "./logo";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 flex justify-between p-5 w-full bg-opacity-70 backdrop-blur-xl transition-opacity duration-200">
+    <header className="sticky top-0 z-50 flex justify-between p-5 w-full bg-opacity-70 backdrop-blur-xl">
       <InteractiveLogo />
       <ConnectButton></ConnectButton>
     </header>

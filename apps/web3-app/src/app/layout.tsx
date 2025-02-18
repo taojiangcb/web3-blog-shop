@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import WagmiProvider from "./wagmi-provider";
-import { Toaster } from "@/components/ui/toaster"
+import WagmiProviderTheme from "./wagmi-provider";
+import { Toaster } from "@/components/ui/toaster";
 import AnimatedBackground from "./ui-components/three-canvas";
+import { cookieToInitialState } from "wagmi";
+import { headers } from "next/headers";
+import { config } from "@/config/wagmi";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,14 +28,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const initialState = {} as any;
+
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{
+          fontFamily:
+            '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+        }}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen`}
       >
         <AnimatedBackground />
-        <WagmiProvider>{children}</WagmiProvider>
-        <Toaster/>
+        <WagmiProviderTheme initialState={initialState}>{children}</WagmiProviderTheme>
+        <Toaster />
       </body>
     </html>
   );

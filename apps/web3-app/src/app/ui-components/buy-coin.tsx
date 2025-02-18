@@ -1,17 +1,9 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 
-import {
-  useAccount,
-  useBalance,
-  useReadContract,
-  useSendTransaction,
-  useWaitForTransactionReceipt,
-  usePublicClient,
-  useTransaction,
-  useWriteContract,
-} from "wagmi";
+import { useAccount, useBalance, useConnect, useReadContract } from "wagmi";
 import { ethers } from "ethers";
+import { Abi } from "viem";
 import Contracts, { getContractAddress } from "@/config/contracts";
 import { formatTokenBalance } from "@/utils/stringFormat";
 import { ChevronsRight, Loader2 } from "lucide-react";
@@ -31,8 +23,10 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import useByTokens from "@/hooks/useByTokens";
+import useByTokens from "@/hooks/use-by-tokens";
+import useBalanceOfJTToken from "@/hooks/use-balanceof-jt-token";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface BuyCoinTokenProps {}
 const fieldSchema = function () {
   return z
@@ -53,36 +47,23 @@ const formSchema = z.object({
 });
 
 function BuyCoinToken(props: BuyCoinTokenProps) {
+  const { toast } = useToast();
+
   const account = useAccount();
   const accountAddress = account.address as `0x${string}`;
   const tokenAddress = getContractAddress(
     Contracts.JTCoin.contractName
   ) as `0x${string}`;
 
-  const { toast } = useToast();
-
-  const JTToken = useBalance({
-    address: account.address as `0x${string}`,
-    token: tokenAddress as `0x${string}`,
-  });
+  const { JTToken, ui_balance_label } = useBalanceOfJTToken();
 
   // 获取当前的 比率
   const rate = useReadContract({
-    address: tokenAddress as `0x${string}`,
-    abi: Contracts.JTCoin.abi,
+    abi: Contracts.JTCoin.abi as Abi,
     functionName: "TOKEN_RATE",
   });
 
-  /** current balance of JT token */
-  const ui_token_controller = useMemo(() => {
-    if (JTToken.isLoading) {
-      return <Loader2 className="h-4 w-4 animate-spin" />;
-    }
-    return formatTokenBalance(
-      Number(ethers.formatEther(JTToken?.data?.value || 0))
-    );
-  }, [JTToken]);
-
+  const RATE = rate?.data || 1000;
   const { buy, loading: watingForBuy } = useByTokens(accountAddress);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -98,24 +79,22 @@ function BuyCoinToken(props: BuyCoinTokenProps) {
     buy(
       {
         address: tokenAddress,
-        abi: Contracts.JTCoin.abi,
+        abi: Contracts.JTCoin.abi as Abi,
         functionName: "buyTokens",
         value: eth,
-      } as any,
+      },
       {
         onError: (error) => {
           toast({
             title: "Transaction failed",
             description: error?.message || "Something went wrong",
           });
-          JTToken.refetch();
         },
         onSuccess: (data) => {
           toast({
             title: "Transaction success",
             description: "You have successfully bought tokens",
           });
-          JTToken.refetch();
         },
       }
     );
@@ -123,7 +102,7 @@ function BuyCoinToken(props: BuyCoinTokenProps) {
 
   const ui_eth_item = useMemo(() => {
     const valueOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const jtValue = Number(e.target.value) * Number(rate?.data || 1000);
+      const jtValue = Number(e.target.value) * Number(RATE);
       form.setValue("JT", jtValue);
       form.setValue("ETH", Number(e.target.value));
     };
@@ -159,11 +138,11 @@ function BuyCoinToken(props: BuyCoinTokenProps) {
         )}
       />
     );
-  }, [form, rate.data]);
+  }, [form, RATE]);
 
   const ui_jt_item = useMemo(() => {
     const valueOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const ethValue = Number(e.target.value) / Number(rate?.data || 1000);
+      const ethValue = Number(e.target.value) / Number(RATE);
       form.setValue("JT", Number(e.target.value));
       form.setValue("ETH", ethValue);
     };
@@ -198,19 +177,21 @@ function BuyCoinToken(props: BuyCoinTokenProps) {
         )}
       />
     );
-  }, [form, rate.data]);
+  }, [form, RATE]);
 
   const ui_buy_btn = useMemo(() => {
     let btn_element = (
       <Button
         variant={"default"}
         type="submit"
+        disabled={!account.isConnected}
         className=" bg-lime-600 hover:bg-lime-700/90"
       >
         Buy
       </Button>
     );
-    if (rate.isLoading || watingForBuy) {
+
+    if (account.isConnected && (rate.isLoading || watingForBuy)) {
       btn_element = (
         <Button
           variant={"default"}
@@ -230,9 +211,11 @@ function BuyCoinToken(props: BuyCoinTokenProps) {
         {btn_element}
       </FormItem>
     );
-  }, [form, rate, watingForBuy]);
+  }, [form, rate, watingForBuy, account]);
 
-  const handleTransfer = async () => {};
+  const handleTransfer = async () => {
+    await JTToken?.refetch();
+  };
 
   return (
     <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-lg ml-6 mt-6">
@@ -246,7 +229,7 @@ function BuyCoinToken(props: BuyCoinTokenProps) {
           >
             <span className="text-gray-400 text-sm mr-1">Your Balance:</span>
             <span className="text-accent-purple text-1xl font-bold mr-1">
-              {ui_token_controller}
+              {ui_balance_label}
             </span>
             <span className="text-gray-200 text-xs">JT</span>
           </div>
@@ -264,7 +247,7 @@ function BuyCoinToken(props: BuyCoinTokenProps) {
           </form>
         </Form>
         <div className="text-sm text-gray-400 mb-1">
-          Rate: 1 ETH = {rate?.data as string} JT
+          Rate: 1 ETH = {String(RATE || 1000)} JT
         </div>
         <p className="text-sm text-gray-600 border-t border-gray-700 shadow-inner pt-2">
           JT tokens can be used to purchase articles and other services

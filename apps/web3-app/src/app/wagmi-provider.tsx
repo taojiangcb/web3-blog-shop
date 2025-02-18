@@ -2,20 +2,38 @@
 import "@rainbow-me/rainbowkit/styles.css";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { WagmiProvider } from "wagmi";
+import { State, WagmiProvider } from "wagmi";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { config } from "../config/wagmi";
 import { duckTheme } from "@/config/rainbowkit";
 
-const client = new QueryClient();
-export default (props: { children: React.ReactNode }) => {
+import { ThemeProvider as ThemeProviderBase } from "next-themes";
+import { useState } from "react";
+
+const WagmiProviderTheme = (props: {
+  children: React.ReactNode;
+  initialState?: State;
+}) => {
+  const [client] = useState(() => new QueryClient());
+
   return (
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={client}>
-        <RainbowKitProvider theme={duckTheme}>
-          {props.children}
-        </RainbowKitProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
+    <ThemeProviderBase
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <WagmiProvider config={config} initialState={props.initialState}>
+        <QueryClientProvider client={client}>
+          <RainbowKitProvider theme={duckTheme}>
+            {props.children}
+          </RainbowKitProvider>
+        </QueryClientProvider>
+      </WagmiProvider>
+    </ThemeProviderBase>
   );
 };
+
+WagmiProviderTheme.displayName = "WagmiProviderTheme";
+
+export default WagmiProviderTheme;

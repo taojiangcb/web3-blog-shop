@@ -15,3 +15,10 @@ export const formatTokenBalance = (value: number): string => {
     maximumFractionDigits: 4  
   });  
 }; 
+
+
+export const formatNumber = (num: number) => {  
+  return Number(num.toFixed(6))  
+    .toString()  
+    .replace(/\.?0+$/, '');  
+};  
