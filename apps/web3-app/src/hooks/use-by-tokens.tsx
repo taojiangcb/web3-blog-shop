@@ -40,12 +40,10 @@ export default function useByTokens(accountAddress: `0x${string}`) {
   } = useWaitForTransactionReceipt({
     hash: tx,
   });
-  async function buy(
+  async function buyTokenHandler(
     params: ContractFunctionParameters & { value: bigint },
-    options?: {
-      onError?: (error: Error) => void;
-      onSuccess?: (data: unknown) => void;
-    }
+    onSuccess?: (data: unknown) => void,
+    onError?: (error: Error) => void,
   ) {
     const simulateTransaction = async (amount: bigint) => {
       if (!accountAddress) {
@@ -70,7 +68,10 @@ export default function useByTokens(accountAddress: `0x${string}`) {
     };
 
     setLoading(true);
-    setOpt(options);
+    setOpt({
+      onError,
+      onSuccess,
+    });
     const amount = params?.value;
     const simulate = await simulateTransaction(amount);
     if (simulate) {
@@ -92,5 +93,5 @@ export default function useByTokens(accountAddress: `0x${string}`) {
     }
   }, [writeError, txError, txData]);
 
-  return { buy, loading };
+  return { buyTokenHandler, loading };
 }

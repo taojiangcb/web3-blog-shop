@@ -67,7 +67,7 @@ export default function ParticlesCard(props: ParticlesCardProps) {
     } catch (err) {
       toast({
         title: "Transaction failed",
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         description: (err as any)?.message || "Something went wrong",
       });
     } finally {
@@ -91,10 +91,8 @@ export default function ParticlesCard(props: ParticlesCardProps) {
   }, [approving, buying, account]);
 
   const ui_buy_btn = useMemo(() => {
-    const allowanceData: bigint =
-      allowance?.data && typeof allowance.data === "string"
-        ? BigInt(allowance.data)
-        : 0n;
+    const allowanceData: bigint = BigInt(allowance?.data?.toString() || "0");
+    // console.log(allowanceData, "=", itemData.price, buying, isBought);
     return (
       <Button
         disabled={buying || isBought || allowanceData < itemData.price}
@@ -107,6 +105,18 @@ export default function ParticlesCard(props: ParticlesCardProps) {
   }, [isBought, buying, allowance?.data, itemData.price]);
 
   const totalEthCost = itemData ? itemData.price / 1000n : 0; // 将 YD 转换为 ETH
+
+  const link_click = () => {
+    if (!isBought) {
+      toast({
+        title: "Please approve the purchase first",
+      });
+      return;
+    }
+    if (itemData.link) {
+      window.open(itemData.link, "_blank");
+    }
+  };
 
   return (
     <li className="course-card group relative overflow-hidden">
@@ -122,20 +132,14 @@ export default function ParticlesCard(props: ParticlesCardProps) {
         </div>
       </div>
       <a
-        href={isBought ? itemData.link : ""}
-        target="_blank"
+        onClick={link_click}
         className="block hover:text-primary transition-colors mb-4"
       >
         <h3 className="text-26-semibold line-clamp-1 text-dark-DEFAULT">
           {itemData.title}
         </h3>
       </a>
-
-      <a
-        target="_blank"
-        href={isBought ? itemData.link : ""}
-        className="block group mb-4"
-      >
+      <a onClick={link_click} className="block group mb-4">
         <p className="course-card_desc mb-3">
           {itemData?.description || "Learn Python fundamentals in 2 hours"}
         </p>

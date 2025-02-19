@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import useByTokens from "@/hooks/use-by-tokens";
 import useBalanceOfJTToken from "@/hooks/use-balanceof-jt-token";
+import StarBorder from "./star-border";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface BuyCoinTokenProps {}
@@ -64,7 +65,8 @@ function BuyCoinToken(props: BuyCoinTokenProps) {
   });
 
   const RATE = rate?.data || 1000;
-  const { buy, loading: watingForBuy } = useByTokens(accountAddress);
+  const { buyTokenHandler, loading: watingForBuy } =
+    useByTokens(accountAddress);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -76,26 +78,26 @@ function BuyCoinToken(props: BuyCoinTokenProps) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const eth = ethers.parseEther((form.getValues("ETH") || 0).toString());
-    buy(
+    buyTokenHandler(
       {
         address: tokenAddress,
         abi: Contracts.JTCoin.abi as Abi,
         functionName: "buyTokens",
         value: eth,
       },
-      {
-        onError: (error) => {
-          toast({
-            title: "Transaction failed",
-            description: error?.message || "Something went wrong",
-          });
-        },
-        onSuccess: (data) => {
-          toast({
-            title: "Transaction success",
-            description: "You have successfully bought tokens",
-          });
-        },
+      (data) => {
+        toast({
+          title: "Transaction success",
+          description: "You have successfully bought tokens",
+        });
+        JTToken?.refetch();
+      },
+      (error) => {
+        toast({
+          title: "Transaction failed",
+          description: error?.message || "Something went wrong",
+        });
+        JTToken?.refetch();
       }
     );
   }
@@ -220,7 +222,7 @@ function BuyCoinToken(props: BuyCoinTokenProps) {
   return (
     <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-lg ml-6 mt-6">
       <div className="flex justify-between">
-        <h2 className="text-2xl font-bold text-primary-dark">Buy Tokens</h2>
+        <h2 className="text-2xl font-bold text-primary-light">Buy Tokens</h2>
         <div className="flex items-center justify-between shadow-md">
           <div
             className="flex items-baseline mx-2 cursor-pointer"

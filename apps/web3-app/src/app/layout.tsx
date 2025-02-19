@@ -7,6 +7,7 @@ import AnimatedBackground from "./ui-components/three-canvas";
 import { cookieToInitialState } from "wagmi";
 import { headers } from "next/headers";
 import { config } from "@/config/wagmi";
+import Aurora from "./ui-components/aurora";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,8 +40,11 @@ export default function RootLayout({
         }}
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen`}
       >
+        {/* <Aurora colorStops={["#3A29FF", "#FF94B4", "#FF3232"]} speed={0.5} /> */}
         <AnimatedBackground />
-        <WagmiProviderTheme initialState={initialState}>{children}</WagmiProviderTheme>
+        <WagmiProviderTheme initialState={initialState}>
+          {children}
+        </WagmiProviderTheme>
         <Toaster />
       </body>
     </html>

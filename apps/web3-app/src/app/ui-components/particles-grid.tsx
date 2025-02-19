@@ -20,7 +20,6 @@ export default function ParticlesGrid() {
   };
 
   const { allParticles, isLoading, error: articlesError } = useArticles();
-
   const ui_articles = useMemo(() => {
     if (isLoading) {
       return (

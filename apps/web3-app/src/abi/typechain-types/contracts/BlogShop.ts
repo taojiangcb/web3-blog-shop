@@ -89,6 +89,7 @@ export interface BlogShopInterface extends Interface {
       | "addArticle"
       | "articleIds"
       | "articles"
+      | "clearAllPurchase"
       | "clearArticles"
       | "getAllArticles"
       | "getAllPurchases"
@@ -110,6 +111,7 @@ export interface BlogShopInterface extends Interface {
       | "removeArticle"
       | "renounceRole"
       | "revokeRole"
+      | "setDescription"
       | "setLink"
       | "setPrice"
       | "setTitle"
@@ -149,6 +151,10 @@ export interface BlogShopInterface extends Interface {
   encodeFunctionData(
     functionFragment: "articles",
     values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "clearAllPurchase",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "clearArticles",
@@ -232,6 +238,10 @@ export interface BlogShopInterface extends Interface {
     values: [BytesLike, AddressLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "setDescription",
+    values: [BigNumberish, string]
+  ): string;
+  encodeFunctionData(
     functionFragment: "setLink",
     values: [BigNumberish, string]
   ): string;
@@ -271,6 +281,10 @@ export interface BlogShopInterface extends Interface {
   decodeFunctionResult(functionFragment: "addArticle", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "articleIds", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "articles", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "clearAllPurchase",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "clearArticles",
     data: BytesLike
@@ -340,6 +354,10 @@ export interface BlogShopInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "setDescription",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "setLink", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "setPrice", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "setTitle", data: BytesLike): Result;
@@ -560,6 +578,8 @@ export interface BlogShop extends BaseContract {
     "view"
   >;
 
+  clearAllPurchase: TypedContractMethod<[], [void], "nonpayable">;
+
   clearArticles: TypedContractMethod<[], [void], "nonpayable">;
 
   getAllArticles: TypedContractMethod<
@@ -652,6 +672,12 @@ export interface BlogShop extends BaseContract {
     "nonpayable"
   >;
 
+  setDescription: TypedContractMethod<
+    [articleId: BigNumberish, description: string],
+    [boolean],
+    "nonpayable"
+  >;
+
   setLink: TypedContractMethod<
     [articleId: BigNumberish, link: string],
     [boolean],
@@ -726,6 +752,9 @@ export interface BlogShop extends BaseContract {
     ],
     "view"
   >;
+  getFunction(
+    nameOrSignature: "clearAllPurchase"
+  ): TypedContractMethod<[], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "clearArticles"
   ): TypedContractMethod<[], [void], "nonpayable">;
@@ -821,6 +850,13 @@ export interface BlogShop extends BaseContract {
   ): TypedContractMethod<
     [role: BytesLike, account: AddressLike],
     [void],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "setDescription"
+  ): TypedContractMethod<
+    [articleId: BigNumberish, description: string],
+    [boolean],
     "nonpayable"
   >;
   getFunction(
