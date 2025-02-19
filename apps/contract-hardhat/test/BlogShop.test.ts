@@ -1,185 +1,142 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import { BlogShop, JTCoin } from "../typechain-types"; // 假设 TypeChain 生成了这些类型
+import { BlogShop, JTCoin } from "../typechain-types";
+import { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
 
 describe("BlogShop", function () {
   let blogShop: BlogShop;
   let jtCoin: JTCoin;
-  let owner: any;
-  let user1: any;
+  let owner: HardhatEthersSigner;
+  let buyer: HardhatEthersSigner;
+  let seller: HardhatEthersSigner;
 
-  before(async function () {
-    // 获取签名者
-    [owner, user1] = await ethers.getSigners();
+  beforeEach(async function () {
+    // 获取测试账户
+    [owner, buyer, seller] = await ethers.getSigners();
 
-    // 部署 JTCoin 合约
-    const JTCoinFactory = await ethers.getContractFactory("JTCoin");
-    jtCoin = (await JTCoinFactory.deploy("JTCoin", "JT")) as JTCoin;
-    await jtCoin.waitForDeployment();
+    // 部署 JTCoin
+    const JTCoin = await ethers.getContractFactory("JTCoin");
+    jtCoin = await JTCoin.deploy();
 
-    // 部署 BlogShop 合约，传入 JTCoin 合约地址
-    const BlogShopFactory = await ethers.getContractFactory("BlogShop");
-    blogShop = (await BlogShopFactory.deploy(
-      await jtCoin.getAddress()
-    )) as BlogShop;
-    await blogShop.waitForDeployment();
+    // 部署 BlogShop
+    const BlogShop = await ethers.getContractFactory("BlogShop");
+    blogShop = await BlogShop.deploy(await jtCoin.getAddress());
 
-    // 授予 BlogShop 合约 MINTER_ROLE 权限
-    const MINTER_ROLE = await jtCoin.MINTER_ROLE();
-    await jtCoin.connect(owner).grantRole(MINTER_ROLE, blogShop.target);
+    // 铸造一些代币给买家用于测试
+    const mintAmount = ethers.parseEther("1000");
+    await jtCoin.mint(buyer.address, mintAmount);
   });
 
-  it("should allow owner to add an article", async function () {
-    // 获取代币的 decimals
-    const decimals = await jtCoin.decimals();
-
-    // 设置文章价格（100 JT），并考虑 decimals
-    const priceInJT = ethers.parseUnits("100", decimals);
-    const link = "https://example.com/article1";
-
-    // 添加文章
-    await expect(blogShop.connect(owner).addArticle(priceInJT, link))
-      .to.emit(blogShop, "ArticleAdded")
-      .withArgs(1, priceInJT, link);
-
-    // 验证文章是否正确添加
-    const article = await blogShop.articles(1);
-    expect(article.id).to.equal(1);
-    expect(article.price).to.equal(priceInJT);
-    expect(article.link).to.equal(link);
-  });
-
-  it("should allow user to purchase an article", async function () {
-    // 获取代币的 decimals
-    const decimals = await jtCoin.decimals();
-
-    // 设置文章价格（100 JT），并考虑 decimals
-    const priceInJT = ethers.parseUnits("100", decimals);
-    const link = "https://example.com/article1";
-
-    // 添加一篇文章
-    await blogShop.connect(owner).addArticle(priceInJT, link);
-
-    // 给用户 mint 足够的 JT 代币
-    const userBalance = ethers.parseUnits("1000", decimals);
-    await jtCoin.connect(owner).mint(user1.address, userBalance);
-
-    // 用户授权 BlogShop 合约使用代币
-    await jtCoin.connect(user1).approve(blogShop.target, priceInJT);
-
-    // 用户购买文章
-    await expect(blogShop.connect(user1).purchaseArticle(1))
-      .to.emit(blogShop, "ArticlePurchased")
-      .withArgs(user1.address, 1, link);
-
-    // 验证用户余额是否正确扣除
-    const userJTBalance = await jtCoin.balanceOf(user1.address);
-    expect(userJTBalance).to.equal(userBalance - priceInJT);
-
-    // 验证合约是否正确收到代币
-    const contractJTBalance = await jtCoin.balanceOf(blogShop.target);
-    expect(contractJTBalance).to.equal(priceInJT);
-  });
-
-  it("should convert ETH to JT tokens at the correct rate", async function () {
-    const userJTBalance_old = await jtCoin.balanceOf(user1.address);
-
-    // 用户发送 1 ETH
-    const ethAmount = ethers.parseEther("1.0");
-    await user1.sendTransaction({
-      to: blogShop.target,
-      value: ethAmount,
+  describe("基础功能", function () {
+    it("应该正确设置初始状态", async function () {
+      expect(await blogShop.owner()).to.equal(owner.address);
+      expect(await blogShop.tokenAddress()).to.equal(await jtCoin.getAddress());
     });
 
-    // 计算预期的 JT 数量（1 ETH = 1000 JT）
-    const expectedJT = ethAmount * 1000n;
-
-    // 验证用户收到的 JT 数量是否正确
-    const userJTBalance = await jtCoin.balanceOf(user1.address);
-    expect(userJTBalance).to.equal(userJTBalance_old + expectedJT);
+    it("应该将MINTER_ROLE授予部署者", async function () {
+      const minterRole = await blogShop.MINTER_ROLE();
+      expect(await blogShop.hasRole(minterRole, owner.address)).to.be.true;
+    });
   });
 
-  it("should allow owner to withdraw ETH", async function () {
-    // 记录所有者初始余额
-    const initialOwnerBalance = await ethers.provider.getBalance(owner.address);
+  describe("文章管理", function () {
+    it("MINTER_ROLE应该能添加文章", async function () {
+      const price = ethers.parseEther("10");
+      const link = "https://example.com/article1";
 
-    // 发送一些 ETH 到合约
-    const ethAmount = ethers.parseEther("1.0");
-    await owner.sendTransaction({
-      to: blogShop.target,
-      value: ethAmount,
+      await expect(blogShop.addArticle(price, link))
+        .to.emit(blogShop, "ArticleAdded")
+        .withArgs(1n, price, link);
+
+      const article = (await blogShop.getAllArticles())[0];
+      expect(article.id).to.equal(1n);
+      expect(article.price).to.equal(price);
+      expect(article.link).to.equal(link);
     });
 
-    // 提取 ETH
-    const tx = await blogShop.connect(owner).withdrawETH();
-    const receipt = await tx.wait();
+    it("非MINTER_ROLE不能添加文章", async function () {
+      const price = ethers.parseEther("10");
+      const link = "https://example.com/article1";
 
-    // 计算 gas 费用
-    const gasUsed = receipt.gasUsed; // gasUsed 是 bigint
-    const gasPrice = receipt.gasPrice; // gasPrice 是 bigint
-    const gasCost = gasUsed * gasPrice; // 使用 BigInt 乘法
-
-    // // 验证所有者余额是否正确增加
-    // const finalOwnerBalance = await ethers.provider.getBalance(owner.address);
-    // expect(finalOwnerBalance).to.equal(
-    //   initialOwnerBalance + ethAmount - gasCost
-    // );
-
-    // 验证合约余额是否正确清零
-    const contractBalance = await ethers.provider.getBalance(blogShop.target);
-    expect(contractBalance).to.equal(0);
+      await expect(blogShop.connect(buyer).addArticle(price, link))
+        .to.be.reverted;
+    });
   });
 
-  it("should allow owner to withdraw JT tokens", async function () {
-    // 获取代币的 decimals
-    const decimals = await jtCoin.decimals();
+  describe("文章购买", function () {
+    beforeEach(async function () {
+      // 添加一篇测试文章
+      const price = ethers.parseEther("10");
+      const link = "https://example.com/article1";
+      await blogShop.addArticle(price, link);
 
-    // 记录所有者初始 JT 余额
-    const initialOwnerJTBalance = await jtCoin.balanceOf(owner.address);
-    const hadToken = await jtCoin.balanceOf(blogShop.target);
+      // 授权BlogShop合约使用买家的代币
+      await jtCoin.connect(buyer).approve(
+        await blogShop.getAddress(),
+        ethers.parseEther("1000")
+      );
+    });
 
-    // 设置文章价格（100 JT），并考虑 decimals
-    const priceInJT = ethers.parseUnits("100", decimals);
-    const link = "https://example.com/article1";
+    it("用户应该能购买文章", async function () {
+      const articleId = 1n;
+      const article = (await blogShop.getAllArticles())[0];
 
-    // 添加一篇文章
-    await blogShop.connect(owner).addArticle(priceInJT, link);
+      await expect(blogShop.connect(buyer).purchaseArticle(articleId))
+        .to.emit(blogShop, "ArticlePurchased")
+        .withArgs(buyer.address, articleId, article.link);
 
-    // 给用户 mint 足够的 JT 代币
-    const userBalance = ethers.parseUnits("1000", decimals);
-    await jtCoin.connect(owner).mint(user1.address, userBalance);
+      // 验证购买记录
+      const purchases = await blogShop.getAllPurchases();
+      expect(purchases[0].buyer).to.equal(buyer.address);
+      expect(purchases[0].articleId).to.equal(articleId);
+    });
 
-    // 用户授权 BlogShop 合约使用代币
-    await jtCoin.connect(user1).approve(blogShop.target, priceInJT);
+    it("购买不存在的文章应该失败", async function () {
+      await expect(blogShop.connect(buyer).purchaseArticle(999))
+        .to.be.revertedWith("this article not exists");
+    });
 
-    // 用户购买文章
-    await blogShop.connect(user1).purchaseArticle(1);
+    it("代币余额不足应该无法购买", async function () {
+      // 先消耗掉买家的代币
+      await jtCoin.connect(buyer).transfer(
+        seller.address,
+        await jtCoin.balanceOf(buyer.address)
+      );
 
-    // 提取 JT 代币
-    await blogShop.connect(owner).withdrawJT();
-
-    // 验证所有者 JT 余额是否正确增加
-    const finalOwnerJTBalance = await jtCoin.balanceOf(owner.address);
-    expect(finalOwnerJTBalance).to.equal(
-      initialOwnerJTBalance + priceInJT + hadToken
-    );
-
-    // 验证合约 JT 余额是否正确清零
-    const contractJTBalance = await jtCoin.balanceOf(blogShop.target);
-    expect(contractJTBalance).to.equal(0);
+      await expect(blogShop.connect(buyer).purchaseArticle(1))
+        .to.be.reverted;
+    });
   });
 
-  it("should revert if non-owner tries to add an article", async function () {
-    // 获取代币的 decimals
-    const decimals = await jtCoin.decimals();
+  describe("查询功能", function () {
+    beforeEach(async function () {
+      // 添加多篇测试文章
+      await blogShop.addArticle(ethers.parseEther("10"), "link1");
+      await blogShop.addArticle(ethers.parseEther("20"), "link2");
+    });
 
-    // 设置文章价格（100 JT），并考虑 decimals
-    const priceInJT = ethers.parseUnits("100", decimals);
-    const link = "https://example.com/article1";
+    it("应该能获取所有文章", async function () {
+      const articles = await blogShop.getAllArticles();
+      expect(articles.length).to.equal(2);
+      expect(articles[0].link).to.equal("link1");
+      expect(articles[1].link).to.equal("link2");
+    });
 
-    // 非所有者尝试添加文章
-    await expect(
-      blogShop.connect(user1).addArticle(priceInJT, link)
-    ).to.be.revertedWith("Not owner");
+    it("应该能获取文章总数", async function () {
+      expect(await blogShop.getArticleCount()).to.equal(2n);
+    });
+
+    it("应该能获取购买记录", async function () {
+      // 先进行一次购买
+      await jtCoin.connect(buyer).approve(
+        await blogShop.getAddress(),
+        ethers.parseEther("1000")
+      );
+      await blogShop.connect(buyer).purchaseArticle(1);
+
+      const purchases = await blogShop.getAllPurchases();
+      expect(purchases.length).to.equal(1);
+      expect(purchases[0].buyer).to.equal(buyer.address);
+    });
   });
 });

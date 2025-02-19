@@ -12,7 +12,7 @@
         "hardhat-to-truffle": "node ./scripts/convert-hardhat-to-truffle.js",
         "deploy:ganache": "hardhat run scripts/deploy.js --network ganache",
         "deploy:hardhat": "hardhat run scripts/deploy.js --network hardhat",
-        "deploy:localhost": "hardhat run scripts/deploy.js --network localhost",
+        "deploy:localhost": "hardhat run scripts/deploy-hardhat.js --network localhost",
         "deploy": "hardhat run scripts/deploy.js"
     },
     "keywords": [],
@@ -36,7 +36,7 @@
         "chai-as-promised": "^8.0.1",
         "dotenv": "^16.4.7",
         "ethers": "^6.13.4",
-        "hardhat": "^2.22.16",
+        "hardhat": "^2.22.18",
         "hardhat-ethernal": "^3.4.0",
         "hardhat-gas-reporter": "^1.0.8",
         "solidity-coverage": "^0.8.0",
