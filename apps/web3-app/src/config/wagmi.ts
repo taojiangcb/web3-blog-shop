@@ -30,7 +30,7 @@ export const config = getDefaultConfig({
   projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || "",
   chains: process.env.NEXT_PUBLIC_NETWORK === 'hardhat'
     ? [mainnet, sepolia, polygon, optimism, hardhatChain]
-    : [mainnet, sepolia, polygon, optimism],
+    : [sepolia,hardhatChain],
   // chains: [hardhatChain],
   transports: {
     [mainnet.id]: http(),  

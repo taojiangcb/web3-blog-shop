@@ -1,12 +1,18 @@
 {
-  "name": "web3-blog-shop",
+  "name": "web3-app",
   "version": "0.1.0",
   "private": true,
+  "sideEffects": false,
+  "module": "esm/index.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "preview": "npm run pages:build && wrangler pages dev",
+    "deploy": "npm run pages:build && wrangler pages deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.0.0",
@@ -17,6 +23,7 @@
     "@radix-ui/themes": "^3.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "daisyui": "^4.12.23",
     "ethers": "^6.13.5",
     "framer-motion": "^12.4.3",
     "jotai": "^2.12.1",
@@ -35,13 +42,21 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.1.7",
+    "@cloudflare/next-on-pages": "^1.13.7",
+    "@cloudflare/workers-types": "^4.20241224.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "compression-webpack-plugin": "^11.1.0",
+    "depcheck": "^1.4.7",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
+    "pino-pretty": "^13.0.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "terser-webpack-plugin": "^5.3.11",
+    "typescript": "^5",
+    "webpack-bundle-analyzer": "^4.10.2"
   }
 }

@@ -12,7 +12,7 @@ function BuySection(props: BuySectionProps) {
   const containerRef = useRef<HTMLDivElement | null>(null); // 修复：传递 null 作为初始值
 
   return (
-    <section className="flex gap-8 items-center backdrop-blur-md rounded-lg">
+    <section className="flex p-5 flex-col-reverse gap-8 items-center backdrop-blur-md rounded-lg md:flex-row ">
       <div className="flex-1">
         <BuyCoinToken />
       </div>

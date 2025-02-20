@@ -4,10 +4,7 @@ import "./globals.css";
 import WagmiProviderTheme from "./wagmi-provider";
 import { Toaster } from "@/components/ui/toaster";
 import AnimatedBackground from "./ui-components/three-canvas";
-import { cookieToInitialState } from "wagmi";
-import { headers } from "next/headers";
-import { config } from "@/config/wagmi";
-import Aurora from "./ui-components/aurora";
+import { State } from "wagmi";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +26,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const initialState = {} as any;
+  const initialState = {} as State;
 
   return (
     <html lang="en">

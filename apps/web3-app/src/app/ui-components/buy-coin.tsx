@@ -1,15 +1,14 @@
 "use client";
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useMemo } from "react";
 
-import { useAccount, useBalance, useConnect, useReadContract } from "wagmi";
+import { useAccount, useReadContract } from "wagmi";
 import { ethers } from "ethers";
 import { Abi } from "viem";
 import Contracts, { getContractAddress } from "@/config/contracts";
-import { formatTokenBalance } from "@/utils/stringFormat";
 import { ChevronsRight, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import {
@@ -220,7 +219,7 @@ function BuyCoinToken(props: BuyCoinTokenProps) {
   };
 
   return (
-    <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-lg ml-6 mt-6">
+    <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-lg">
       <div className="flex justify-between">
         <h2 className="text-2xl font-bold text-primary-light">Buy Tokens</h2>
         <div className="flex items-center justify-between shadow-md">

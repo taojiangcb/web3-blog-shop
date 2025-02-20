@@ -17,7 +17,7 @@ const eslintConfig = [
     rules: {
       // 处理未使用变量（@typescript-eslint/no-unused-vars）
       "@typescript-eslint/no-unused-vars":"off",
-      "@typescript-eslint/no-require-imports": "off" 
+      // "@typescript-eslint/no-require-imports": "off" 
     }
   }
 ];

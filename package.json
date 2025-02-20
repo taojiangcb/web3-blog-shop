@@ -3,17 +3,6 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "compile": "npx hardhat compile",
-        "node": "./scripts/hardhat-node.sh",
-        "test": "npx hardhat test",
-        "clean": "npx hardhat clean",
-        "typechain": "npx hardhat typechain",
-        "ethernal:listener": "ETHERNAL_EMAIL=taojiangcb@gmial.com ETHERNAL_PASSWORD=Qwert_741@ ethernal listen",
-        "hardhat-to-truffle": "node ./scripts/convert-hardhat-to-truffle.js",
-        "deploy:ganache": "hardhat run scripts/deploy.js --network ganache",
-        "deploy:hardhat": "hardhat run scripts/deploy.js --network hardhat",
-        "deploy:localhost": "hardhat run scripts/deploy-hardhat.js --network localhost",
-        "deploy": "hardhat run scripts/deploy.js"
     },
     "keywords": [],
     "author": "",
