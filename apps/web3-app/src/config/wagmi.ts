@@ -1,6 +1,5 @@
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { mainnet, optimism, polygon, sepolia } from "wagmi/chains";
-import { environment } from "./environment";
 import { http, cookieStorage, createConfig, createStorage } from 'wagmi'  
 
 // 配置 Hardhat 本地链
