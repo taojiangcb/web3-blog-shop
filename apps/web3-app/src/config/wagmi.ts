@@ -1,6 +1,6 @@
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { mainnet, optimism, polygon, sepolia } from "wagmi/chains";
-import { http, cookieStorage, createConfig, createStorage } from 'wagmi'  
+import { http, cookieStorage, createConfig, createStorage } from "wagmi";
 
 // 配置 Hardhat 本地链
 const hardhatChain = {
@@ -27,20 +27,19 @@ const hardhatChain = {
 export const config = getDefaultConfig({
   appName: "Web3 app",
   projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || "",
-  chains: process.env.NEXT_PUBLIC_NETWORK === 'hardhat'
-    ? [mainnet, sepolia, polygon, optimism, hardhatChain]
-    : [sepolia,hardhatChain],
+  chains:
+    process.env.NEXT_PUBLIC_NETWORK === "hardhat"
+      ? [mainnet, sepolia, polygon, optimism, hardhatChain]
+      : [sepolia, hardhatChain],
   // chains: [hardhatChain],
   transports: {
-    [mainnet.id]: http(),  
+    [mainnet.id]: http(),
     // 替换之前 不可用的 https://rpc.sepolia.org/
     [hardhatChain.id]: http("http://127.0.0.1:8545"),
-    [sepolia.id]: http(
-      "https://sepolia.infura.io/v3/a16a2a72cbc24f73a889bbac478383c9"
-    ),
+    [sepolia.id]: http(process.env.NEXT_PUBLIC_SEPOLIA_RPC_URL),
   },
-  storage: createStorage({  
-    storage: cookieStorage,  
-  }), 
+  storage: createStorage({
+    storage: cookieStorage,
+  }),
   ssr: true,
 });
