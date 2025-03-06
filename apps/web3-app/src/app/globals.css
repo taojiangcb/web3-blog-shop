@@ -260,4 +260,18 @@ body {
   .animate-move-right {
     animation: move-right 1s linear infinite alternate; /* 1秒内完成一次移动，线性，循环 */
   }
+
+  @keyframes move-top {
+    0% {
+      transform: translateY(-5px);
+    }
+    100% {
+      transform: translateY(5px); /* 你可以根据需要调整移动的距离 */
+    }
+  }
+
+  .animate-move-down {
+    animation: move-top 1s linear infinite alternate; /* 1秒内完成一次移动，线性，循环 */
+  }
+
 }

@@ -1,0 +1,62 @@
+{
+  // 使用 JSON Schema 进行配置验证
+  "$schema": "https://json.schemastore.org/swcrc",
+  "jsc": {
+    // 代码解析配置
+    "parser": {
+      // 启用 TypeScript 支持
+      "syntax": "typescript",
+      // 支持 TSX 语法
+      "tsx": true,
+      // 支持装饰器语法
+      "decorators": true,
+      // 支持动态导入语法
+      "dynamicImport": true
+    },
+    // 代码转换配置
+    "transform": {
+      "react": {
+        // 使用新的 JSX 转换
+        "runtime": "automatic",
+        // 禁用开发模式，用于生产环境
+        "development": false,
+        // 启用 React Fast Refresh
+        "refresh": true
+      },
+      // 支持旧版装饰器语法
+      "legacyDecorator": true,
+      // 保留装饰器元数据，用于依赖注入等场景
+      "decoratorMetadata": true
+    },
+    // 编译目标版本
+    "target": "es2020",
+    // 使用更宽松的编译规则，提高性能
+    "loose": true,
+    // 代码压缩配置
+    // "minify": {
+    //   "compress": {
+    //     // 删除未使用的代码
+    //     "unused": true,
+    //     // 删除永远不会执行的代码
+    //     "dead_code": true,
+    //     // 压缩passes次数，数值越大压缩效果越好
+    //     "passes": 2,
+    //     // 移除console.* 调用
+    //     // "drop_console": true,
+    //     "drop_debugger": false
+    //   },
+    //   // 启用变量名压缩
+    //   "mangle": true
+    // }
+  },
+  // 启用整体代码压缩
+  "minify": false,
+  "module": {
+    // 使用 ES6 模块系统
+    "type": "es6"
+  },
+  // 生成 source map，方便调试
+  "sourceMaps": true,
+  // 排除不需要编译的文件夹
+  "exclude": ["node_modules", "dist", ".next"]
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1736479910626" clover="3.2.0">
+  <project timestamp="1736479910627" name="All files">
+    <metrics statements="1" coveredstatements="1" conditionals="21" coveredconditionals="2" methods="8" coveredmethods="3" elements="30" coveredelements="6" complexity="0" loc="1" ncloc="1" packages="1" files="1" classes="1"/>
+    <file name="index.ts" path="/Users/taojiang/Documents/study/my-dapp/src/utils/index.ts">
+      <metrics statements="1" coveredstatements="1" conditionals="21" coveredconditionals="2" methods="8" coveredmethods="3"/>
+      <line num="1" count="3" type="cond" truecount="2" falsecount="19"/>
+    </file>
+  </project>
+</coverage>

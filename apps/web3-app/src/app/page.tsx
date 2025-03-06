@@ -8,7 +8,7 @@ import Footer from "./ui-components/footer";
 export default () => {
   return (
     <main>
-      <Header />
+      
       <main className="relative max-w-4xl mx-auto mt-20">
         <BuySection />
         <div className="p-5">

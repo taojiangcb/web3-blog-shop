@@ -33,7 +33,7 @@ export const config = getDefaultConfig({
       : [sepolia, hardhatChain],
   // chains: [hardhatChain],
   transports: {
-    [mainnet.id]: http(),
+    // [mainnet.id]: http(),
     // 替换之前 不可用的 https://rpc.sepolia.org/
     [hardhatChain.id]: http("http://127.0.0.1:8545"),
     [sepolia.id]: http(process.env.NEXT_PUBLIC_SEPOLIA_RPC_URL),

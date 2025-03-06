@@ -81,7 +81,7 @@ export default function AnimatedBackground() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []); // 空依赖数组，仅在组件挂载时运行一次
+  }, [canvasRef]); // 空依赖数组，仅在组件挂载时运行一次
 
   return (
     <canvas
