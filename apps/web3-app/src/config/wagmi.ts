@@ -30,7 +30,7 @@ export const config = getDefaultConfig({
   chains:
     process.env.NEXT_PUBLIC_NETWORK === "hardhat"
       ? [mainnet, sepolia, polygon, optimism, hardhatChain]
-      : [sepolia, hardhatChain],
+      : [sepolia, mainnet, hardhatChain],
   // chains: [hardhatChain],
   transports: {
     // [mainnet.id]: http(),
