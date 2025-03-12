@@ -1,0 +1,28 @@
+{
+  "name": "mastra-ai-agent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "mastra dev",
+    "deploy": "mastra deploy cloudflare",
+    "build": "mastra build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ai-sdk/deepseek": "^0.1.13",
+    "@ai-sdk/openai": "^1.2.1",
+    "@mastra/core": "^0.5.0",
+    "@mastra/memory": "^0.1.7",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@mastra/deployer-cloudflare": "^0.1.8",
+    "bun": "^1.2.4",
+    "dotenv": "^16.4.7",
+    "mastra": "^0.3.0"
+  }
+}
