@@ -31,42 +31,6 @@ const nextConfig: NextConfig = {
       );
     }
 
-    // config.externals.push({
-    //   react: "React",
-    //   "react-dom": "ReactDOM",
-    // });
-    config.plugins.push(
-      // new ModuleFederationPlugin({
-      //   name: "web3",
-      //   filename: "static/chunks/remoteEntry.js",
-      //   remotes: {
-      //     dex: "dex@https://dex-7p1.pages.dev/remoteEntry.js",
-      //   },
-      //   shared: {
-      //     ethers: {
-      //       singleton: true,
-      //       requiredVersion: deps.ethers,
-      //       eager: true,
-      //     },
-      //     // wagmi: {
-      //     //   singleton: true,
-      //     //   requiredVersion: deps.wagmi,
-      //     //   eager: true,
-      //     // },
-      //     antd: {
-      //       singleton: true,
-      //       requiredVersion: deps.antd,
-      //       eager: true,
-      //     },
-      //     "react/jsx-runtime": {
-      //       singleton: true,
-      //       requiredVersion: deps.react,
-      //       eager: true,
-      //     },
-      //   },
-      // })
-    );
-
     return config;
   },
 };

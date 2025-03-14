@@ -20,7 +20,7 @@ const agent = mastraClient.getAgent(agentId);
 
 export default function AIChatPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<span></span>}>
       <AIChatContent />
     </Suspense>
   );

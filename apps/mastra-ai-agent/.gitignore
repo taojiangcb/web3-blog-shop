@@ -2,3 +2,4 @@ wrangler.json
 .env
 .env.production
 .env.development
+.mastra

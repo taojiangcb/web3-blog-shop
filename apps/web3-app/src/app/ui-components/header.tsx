@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 
 export default function HeaderS() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<span></span>}>
       <Header />
     </Suspense>
   );
