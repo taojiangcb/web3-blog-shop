@@ -1,0 +1,240 @@
+2025-03-19 22:47:18: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:18: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:18:           ^^^^^^^
+2025-03-19 22:47:18: 
+2025-03-19 22:47:18: SyntaxError: missing ) after argument list
+2025-03-19 22:47:18:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:18:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:18:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:18:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:18:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:18:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:18:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:18:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:18:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:18:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:18: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:18: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:18:           ^^^^^^^
+2025-03-19 22:47:18: 
+2025-03-19 22:47:18: SyntaxError: missing ) after argument list
+2025-03-19 22:47:18:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:18:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:18:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:18:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:18:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:18:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:18:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:18:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:18:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:18:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:19: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:19: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:19:           ^^^^^^^
+2025-03-19 22:47:19: 
+2025-03-19 22:47:19: SyntaxError: missing ) after argument list
+2025-03-19 22:47:19:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:19:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:19:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:19:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:19:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:19:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:19:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:19:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:19:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:19:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:19: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:19: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:19:           ^^^^^^^
+2025-03-19 22:47:19: 
+2025-03-19 22:47:19: SyntaxError: missing ) after argument list
+2025-03-19 22:47:19:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:19:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:19:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:19:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:19:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:19:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:19:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:19:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:19:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:19:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:19: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:19: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:19:           ^^^^^^^
+2025-03-19 22:47:19: 
+2025-03-19 22:47:19: SyntaxError: missing ) after argument list
+2025-03-19 22:47:19:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:19:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:19:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:19:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:19:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:19:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:19:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:19:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:19:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:19:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:20: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:20: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:20:           ^^^^^^^
+2025-03-19 22:47:20: 
+2025-03-19 22:47:20: SyntaxError: missing ) after argument list
+2025-03-19 22:47:20:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:20:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:20:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:20:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:20:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:20:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:20:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:20:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:20:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:20:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:20: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:20: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:20:           ^^^^^^^
+2025-03-19 22:47:20: 
+2025-03-19 22:47:20: SyntaxError: missing ) after argument list
+2025-03-19 22:47:20:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:20:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:20:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:20:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:20:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:20:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:20:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:20:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:20:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:20:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:21: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:21: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:21:           ^^^^^^^
+2025-03-19 22:47:21: 
+2025-03-19 22:47:21: SyntaxError: missing ) after argument list
+2025-03-19 22:47:21:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:21:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:21:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:21:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:21:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:21:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:21:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:21:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:21:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:21:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:21: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:21: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:21:           ^^^^^^^
+2025-03-19 22:47:21: 
+2025-03-19 22:47:21: SyntaxError: missing ) after argument list
+2025-03-19 22:47:21:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:21:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:21:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:21:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:21:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:21:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:21:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:21:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:21:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:21:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:22: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:22: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:22:           ^^^^^^^
+2025-03-19 22:47:22: 
+2025-03-19 22:47:22: SyntaxError: missing ) after argument list
+2025-03-19 22:47:22:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:22:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:22:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:22:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:22:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:22:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:22:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:22:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:22:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:22:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:22: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:22: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:22:           ^^^^^^^
+2025-03-19 22:47:22: 
+2025-03-19 22:47:22: SyntaxError: missing ) after argument list
+2025-03-19 22:47:22:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:22:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:22:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:22:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:22:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:22:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:22:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:22:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:22:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:22:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:23: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:23: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:23:           ^^^^^^^
+2025-03-19 22:47:23: 
+2025-03-19 22:47:23: SyntaxError: missing ) after argument list
+2025-03-19 22:47:23:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:23:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:23:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:23:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:23:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:23:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:23:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:23:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:23:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:23:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:23: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:23: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:23:           ^^^^^^^
+2025-03-19 22:47:23: 
+2025-03-19 22:47:23: SyntaxError: missing ) after argument list
+2025-03-19 22:47:23:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:23:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:23:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:23:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:23:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:23:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:23:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:23:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:23:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:23:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:24: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:24: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:24:           ^^^^^^^
+2025-03-19 22:47:24: 
+2025-03-19 22:47:24: SyntaxError: missing ) after argument list
+2025-03-19 22:47:24:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:24:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:24:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:24:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:24:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:24:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:24:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:24:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:24:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:24:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:24: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:24: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:24:           ^^^^^^^
+2025-03-19 22:47:24: 
+2025-03-19 22:47:24: SyntaxError: missing ) after argument list
+2025-03-19 22:47:24:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:24:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:24:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:24:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:24:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:24:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:24:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:24:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:24:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:24:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:24: /Users/taojiang/Documents/study/web3-blog-shop/apps/langchain-ai-agent/node_modules/.bin/ts-node:2
+2025-03-19 22:47:24: basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+2025-03-19 22:47:24:           ^^^^^^^
+2025-03-19 22:47:24: 
+2025-03-19 22:47:24: SyntaxError: missing ) after argument list
+2025-03-19 22:47:24:     at wrapSafe (node:internal/modules/cjs/loader:1378:20)
+2025-03-19 22:47:24:     at Module._compile (node:internal/modules/cjs/loader:1428:41)
+2025-03-19 22:47:24:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:24:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:24:     at Module._load (node:internal/modules/cjs/loader:1104:12)
+2025-03-19 22:47:24:     at Object.<anonymous> (/Users/taojiang/.nvm/versions/node/v20.18.0/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+2025-03-19 22:47:24:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-03-19 22:47:24:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+2025-03-19 22:47:24:     at Module.load (node:internal/modules/cjs/loader:1288:32)
+2025-03-19 22:47:24:     at Module._load (node:internal/modules/cjs/loader:1104:12)

@@ -1,0 +1,6 @@
+[2025-01-12T20:55:53.514] [ERROR] cheese - [Error: ENOENT: no such file or directory, open '/Users/taojiang/Documents/study/my-dapp-bff/views/index.html'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/taojiang/Documents/study/my-dapp-bff/views/index.html'
+}

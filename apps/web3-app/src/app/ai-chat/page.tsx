@@ -1,22 +1,21 @@
 "use client";
 
-import { MastraClient } from "@mastra/client-js";
 import React, { useState, useRef, useEffect } from "react";
-import { Spin, Avatar, Card, message } from "antd";
-import { SendOutlined, UserOutlined, RobotOutlined } from "@ant-design/icons";
+import { Spin, Avatar, message } from "antd";
+import { LoadingOutlined, SendOutlined, SyncOutlined, UserOutlined } from "@ant-design/icons";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter, useSearchParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Suspense } from 'react';
+import { Suspense } from "react";
+import AiChatMessageVo from "@/defined-object/ai-chat-message-vo";
 
-const mastraClient = new MastraClient({
-  baseUrl: process.env.NEXT_PUBLIC_MASTRA_API_URL || "http://localhost:4111",
-});
+// API 基础 URL
+const API_BASE_URL = process.env.NEXT_PUBLIC_LANGCHAIN_API_URL || "http://localhost:3000";
 
-const agentId = "englishTutorAgent";
-const agent = mastraClient.getAgent(agentId);
+console.log('LANGCHAIN_API_URL:', process.env.NEXT_PUBLIC_LANGCHAIN_API_URL);
+// const API_BASE_URL = "http://localhost:3000";
 
 export default function AIChatPage() {
   return (
@@ -27,15 +26,7 @@ export default function AIChatPage() {
 }
 
 function AIChatContent() {
-  const [messages, setMessages] = useState<{ role: string; content: string }[]>(
-    [
-      {
-        role: "assistant",
-        content:
-          "Hello, I'm JO, your English learning assistant, and today we can talk about something you're interested in.",
-      },
-    ]
-  );
+  const [messages, setMessages] = useState<AiChatMessageVo[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
@@ -43,50 +34,43 @@ function AIChatContent() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [threadId, setThreadId] = useState<string>("");
+  const [sessionId, setSessionId] = useState<string>("");
 
   // 初始化对话线程
   useEffect(() => {
     const initThread = async () => {
-      let rid = searchParams.get("rid");
-      if (!rid) {
-        rid = uuidv4();
-        // 更新 URL，添加 resourceId
-        router.push(`/ai-chat?rid=${rid}`);
+      let sessionId = searchParams.get("sessionId");
+      if (!sessionId) {
+        sessionId = uuidv4();
+        router.push(`/ai-chat?sessionId=${sessionId}`);
       }
 
-      let tid = null;
-      const threads = await mastraClient.getMemoryThreads({
-        resourceId: rid,
-        agentId,
-      });
+      try {
+        // 获取历史消息
+        const response = await fetch(
+          `${API_BASE_URL}/api/history?sessionId=${sessionId}`
+        );
+        const data = await response.json();
 
-      if (threads.length > 0) {
-        tid = threads[0];
-      } else {
-        const thread = await mastraClient.createMemoryThread({
-          resourceid: rid,
-          title: "Learn english",
-          metadata: {
-            project: "mastra",
-            topic: "architecture",
-          },
-          threadId: "",
-          agentId: agentId,
-        });
-        tid = thread;
-      }
-      setThreadId(tid.id);
+        if (!data.data.length) {
+          const initTalk = await fetch(
+            `${API_BASE_URL}/api/createTalk?sessionId=${sessionId}`
+          );
+          const initTalkData = await initTalk.json();
+          setMessages([initTalkData.data]);
+        }
 
-      const tInstance = mastraClient.getMemoryThread(tid.id, agentId);
-      const { messages } = await tInstance.getMessages();
-      if (messages.length > 0) {
-        setMessages(messages as any);
+        if (response.ok && data.data.length > 0) {
+          setMessages(data.data);
+        }
+        setSessionId(sessionId);
+      } catch (error) {
+        console.error("Failed to initialize chat:", error);
+        messageApi.error("初始化聊天失败");
       }
     };
     initThread();
   }, [searchParams]);
-
   // 自动滚动到最新消息
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -98,27 +82,18 @@ function AIChatContent() {
 
   // 发送消息
   const sendMessage = async () => {
-    if (!inputValue.trim() || !threadId) return;
-    // Use a stable ID format
-    const messageId = `${threadId}-${messages.length + 1}`;
-    const assistantMessageId = `${threadId}-${messages.length + 2}`;
+    if (!inputValue.trim() || !sessionId) return;
 
-    // 添加用户消息到聊天记录
-    const userMessage = {
-      id: messageId,
-      role: "user",
+    const userMessage: AiChatMessageVo = {
+      role: "human",
       content: inputValue,
-      createdAt: new Date().toISOString(),
-      threadId: threadId,
-      type: "text",
+      sessionId: sessionId,
     };
 
-    const newAssistantMessage = {
-      id: assistantMessageId,
-      role: "assistant" as const,
+    const newAssistantMessage: AiChatMessageVo = {
+      role: "ai",
       content: "",
-      threadId: threadId,
-      type: "text",
+      sessionId: sessionId,
     };
 
     setInputValue("");
@@ -126,72 +101,47 @@ function AIChatContent() {
     setMessages((prev) => [...prev, userMessage, newAssistantMessage]);
 
     try {
-      let rid = searchParams.get("rid") || "";
-      if (!rid) {
-        throw Error("rid id not defined");
-      }
-
-      // 调用 Mastra 代理获取回复
-      const response = await agent.stream({
-        messages: [userMessage as any],
-        threadId: threadId,
-        resourceId: rid,
+      const response = await fetch(`${API_BASE_URL}/api/chat`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "text/event-stream",
+        },
+        body: JSON.stringify({
+          content: inputValue,
+          sessionId: sessionId,
+        }),
       });
 
-      if (!response.body) {
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+
+      if (!reader) {
         throw new Error("No response body");
       }
 
-      if (response.status !== 200) {
-        const error = await response.json();
-        throw new Error(error.message);
-      }
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let buffer = "";
       let assistantMessage = "";
-      let errorMessage = "";
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
 
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          const chunk = decoder.decode(value);
-          buffer += chunk;
+        const chunk = decoder.decode(value);
+        const lines = chunk.split("\n");
 
-          const matches = buffer.matchAll(/0:"((?:\\.|(?!").)*?)"/g);
-          const errorMatches = buffer.matchAll(/3:"((?:\\.|(?!").)*?)"/g);
-
-          if (errorMatches) {
-            for (const match of errorMatches) {
-              const content = match[1];
-              errorMessage += content;
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            try {
+              const data = JSON.parse(line.slice(6));
+              assistantMessage += data.content;
               setMessages((prev) => [
                 ...prev.slice(0, -1),
-                {
-                  ...prev[prev.length - 1],
-                  content: errorMessage,
-                  isError: true,
-                },
+                { ...newAssistantMessage, content: assistantMessage },
               ]);
+            } catch (e) {
+              console.error("Failed to parse chunk:", e);
             }
           }
-
-          for (const match of matches) {
-            const content = match[1].replace(/\\"/g, '"');
-            assistantMessage += content;
-            setMessages((prev) => [
-              ...prev.slice(0, -1),
-              { ...newAssistantMessage, content: assistantMessage },
-            ]);
-          }
-          buffer = "";
         }
-      } catch (error: any) {
-        throw new Error(error.message);
-      } finally {
-        reader.releaseLock();
       }
     } catch (error: any) {
       console.error("Error:", error);
@@ -199,9 +149,7 @@ function AIChatContent() {
         ...prev.slice(0, -1),
         {
           ...prev[prev.length - 1],
-          content:
-            error?.message ||
-            `An error occurred while processing your request.`,
+          content: error?.message || "发生错误，请重试",
           isError: true,
         },
       ]);
@@ -244,14 +192,14 @@ function AIChatContent() {
               <div
                 key={index}
                 className={`mb-4 rounded-lg p-4 ${
-                  msg.role === "user" ? "ml-12" : "mr-12"
+                  msg.role === "human" ? "ml-12" : "mr-12"
                 } bg-dark-lighter bg-opacity-30`}
               >
                 <div className="flex items-start">
                   <Avatar
                     className="flex-none w-[30px]"
                     icon={
-                      msg.role === "user" ? (
+                      msg.role === "human" ? (
                         <UserOutlined />
                       ) : (
                         <img width={30} height={30} src="/ai-avatar.png" />
@@ -283,25 +231,36 @@ function AIChatContent() {
                           );
                         },
                         // 添加段落处理
-                        p: ({ node, children, ...props }) => (
-                          <p
-                            className="whitespace-pre-wrap break-words"
-                            {...props}
-                          >
-                            {children}
-                          </p>
-                        ),
+                        // 修改段落处理
+                        p: ({ node, children, ...props }) => {
+                          // 检查是否为最后一个段落
+                          // Get the parent element's children array
+                          const parentChildren = (node as any)?.parent?.children || [];
+                          // Check if current node is the last paragraph
+                          const isLastParagraph = parentChildren.indexOf(node) === parentChildren.length - 1;
+                          return (
+                            <p
+                              className="whitespace-pre-wrap break-words"
+                              {...props}
+                            >
+                              {children}
+                              {/* {isLastParagraph && index === messages.length - 1 && loading && (
+                                <SyncOutlined spin className="ml-1 inline-block" />
+                              )} */}
+                            </p>
+                          );
+                        },
                       }}
                     >
                       {typeof content === "string"
                         ? content
                         : JSON.stringify(content)}
                     </ReactMarkdown>
-                    {index === messages.length - 1 && loading && (
-                      <span>
-                        <Spin tip="AI 思考中..." />
-                      </span>
-                    )}
+                    <span className="inline">
+                      {index === messages.length - 1 && loading && (
+                        <SyncOutlined spin className="ml-1 inline-block" />
+                      )}
+                    </span>
                   </div>
                 </div>
               </div>

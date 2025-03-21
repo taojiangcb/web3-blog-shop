@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "langchain-ai-agent",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/apps/langchain-ai-agent/src/app.ts",
+      "outFiles": [
+        "${workspaceFolder}/apps/langchain-ai-agent/output/*.js"
+      ],
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register"
+      ],
+      "env": {
+        "TS_NODE_PROJECT": "${workspaceFolder}/apps/langchain-ai-agent/tsconfig.json",
+        "NODE_ENV": "development"
+      },
+      "cwd": "${workspaceFolder}/apps/langchain-ai-agent",
+      "runtimeVersion": "20.18.0"
+    }
+  ]
+}

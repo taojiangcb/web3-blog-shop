@@ -1,0 +1,19 @@
+module.exports = [
+  '@koa/cors',
+  'koa-cors',
+  '@langchain/community',
+  'langchain',
+  '@langchain/core',
+  '@langchain/openai',
+  '@langchain/deepseek',
+  'awilix',
+  'awilix-koa',
+  'dotenv',
+  'koa',
+  'koa-bodyparser',
+  'koa-router',
+  'lodash',
+  'awilix',
+  'awilix-koa',
+  'serverless-http'
+];

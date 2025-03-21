@@ -1,0 +1,288 @@
+2025-01-14 15:31:27: Error: Cannot find module './app.ts'
+2025-01-14 15:31:27: Require stack:
+2025-01-14 15:31:27: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:27:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:27:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:27:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:27:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:27:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:27:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:27:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:27:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:27:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:27:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:27:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:27:   requireStack: [
+2025-01-14 15:31:27:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:27:   ]
+2025-01-14 15:31:27: }
+2025-01-14 15:31:28: Error: Cannot find module './app.ts'
+2025-01-14 15:31:28: Require stack:
+2025-01-14 15:31:28: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:28:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:28:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:28:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:28:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:28:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:28:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:28:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:28:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:28:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:28:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:28:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:28:   requireStack: [
+2025-01-14 15:31:28:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:28:   ]
+2025-01-14 15:31:28: }
+2025-01-14 15:31:28: Error: Cannot find module './app.ts'
+2025-01-14 15:31:28: Require stack:
+2025-01-14 15:31:28: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:28:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:28:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:28:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:28:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:28:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:28:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:28:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:28:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:28:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:28:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:28:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:28:   requireStack: [
+2025-01-14 15:31:28:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:28:   ]
+2025-01-14 15:31:28: }
+2025-01-14 15:31:28: Error: Cannot find module './app.ts'
+2025-01-14 15:31:28: Require stack:
+2025-01-14 15:31:28: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:28:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:28:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:28:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:28:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:28:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:28:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:28:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:28:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:28:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:28:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:28:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:28:   requireStack: [
+2025-01-14 15:31:28:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:28:   ]
+2025-01-14 15:31:28: }
+2025-01-14 15:31:29: Error: Cannot find module './app.ts'
+2025-01-14 15:31:29: Require stack:
+2025-01-14 15:31:29: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:29:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:29:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:29:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:29:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:29:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:29:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:29:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:29:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:29:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:29:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:29:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:29:   requireStack: [
+2025-01-14 15:31:29:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:29:   ]
+2025-01-14 15:31:29: }
+2025-01-14 15:31:29: Error: Cannot find module './app.ts'
+2025-01-14 15:31:29: Require stack:
+2025-01-14 15:31:29: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:29:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:29:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:29:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:29:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:29:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:29:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:29:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:29:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:29:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:29:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:29:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:29:   requireStack: [
+2025-01-14 15:31:29:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:29:   ]
+2025-01-14 15:31:29: }
+2025-01-14 15:31:29: Error: Cannot find module './app.ts'
+2025-01-14 15:31:29: Require stack:
+2025-01-14 15:31:29: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:29:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:29:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:29:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:29:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:29:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:29:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:29:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:29:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:29:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:29:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:29:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:29:   requireStack: [
+2025-01-14 15:31:29:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:29:   ]
+2025-01-14 15:31:29: }
+2025-01-14 15:31:30: Error: Cannot find module './app.ts'
+2025-01-14 15:31:30: Require stack:
+2025-01-14 15:31:30: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:30:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:30:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:30:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:30:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:30:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:30:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:30:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:30:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:30:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:30:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:30:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:30:   requireStack: [
+2025-01-14 15:31:30:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:30:   ]
+2025-01-14 15:31:30: }
+2025-01-14 15:31:30: Error: Cannot find module './app.ts'
+2025-01-14 15:31:30: Require stack:
+2025-01-14 15:31:30: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:30:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:30:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:30:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:30:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:30:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:30:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:30:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:30:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:30:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:30:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:30:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:30:   requireStack: [
+2025-01-14 15:31:30:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:30:   ]
+2025-01-14 15:31:30: }
+2025-01-14 15:31:30: Error: Cannot find module './app.ts'
+2025-01-14 15:31:30: Require stack:
+2025-01-14 15:31:30: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:30:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:30:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:30:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:30:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:30:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:30:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:30:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:30:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:30:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:30:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:30:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:30:   requireStack: [
+2025-01-14 15:31:30:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:30:   ]
+2025-01-14 15:31:30: }
+2025-01-14 15:31:30: Error: Cannot find module './app.ts'
+2025-01-14 15:31:30: Require stack:
+2025-01-14 15:31:30: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:30:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:30:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:30:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:30:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:30:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:30:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:30:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:30:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:30:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:30:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:30:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:30:   requireStack: [
+2025-01-14 15:31:30:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:30:   ]
+2025-01-14 15:31:30: }
+2025-01-14 15:31:31: Error: Cannot find module './app.ts'
+2025-01-14 15:31:31: Require stack:
+2025-01-14 15:31:31: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:31:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:31:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:31:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:31:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:31:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:31:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:31:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:31:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:31:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:31:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:31:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:31:   requireStack: [
+2025-01-14 15:31:31:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:31:   ]
+2025-01-14 15:31:31: }
+2025-01-14 15:31:31: Error: Cannot find module './app.ts'
+2025-01-14 15:31:31: Require stack:
+2025-01-14 15:31:31: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:31:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:31:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:31:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:31:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:31:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:31:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:31:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:31:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:31:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:31:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:31:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:31:   requireStack: [
+2025-01-14 15:31:31:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:31:   ]
+2025-01-14 15:31:31: }
+2025-01-14 15:31:31: Error: Cannot find module './app.ts'
+2025-01-14 15:31:31: Require stack:
+2025-01-14 15:31:31: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:31:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:31:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:31:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:31:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:31:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:31:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:31:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:31:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:31:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:31:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:31:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:31:   requireStack: [
+2025-01-14 15:31:31:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:31:   ]
+2025-01-14 15:31:31: }
+2025-01-14 15:31:32: Error: Cannot find module './app.ts'
+2025-01-14 15:31:32: Require stack:
+2025-01-14 15:31:32: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:32:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:32:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:32:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:32:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:32:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:32:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:32:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:32:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:32:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:32:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:32:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:32:   requireStack: [
+2025-01-14 15:31:32:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:32:   ]
+2025-01-14 15:31:32: }
+2025-01-14 15:31:32: Error: Cannot find module './app.ts'
+2025-01-14 15:31:32: Require stack:
+2025-01-14 15:31:32: - /Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript
+2025-01-14 15:31:32:     at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+2025-01-14 15:31:32:     at Function.resolve (node:internal/modules/helpers:190:19)
+2025-01-14 15:31:32:     at requireResolveNonCached (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:549:16)
+2025-01-14 15:31:32:     at getProjectSearchDir (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:519:40)
+2025-01-14 15:31:32:     at phase3 (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:267:27)
+2025-01-14 15:31:32:     at bootstrap (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:47:30)
+2025-01-14 15:31:32:     at main (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:33:12)
+2025-01-14 15:31:32:     at Object.<anonymous> (/Users/taojiang/Documents/study/my-dapp-bff/node_modules/ts-node/dist/bin.js:579:5)
+2025-01-14 15:31:32:     at Module._compile (node:internal/modules/cjs/loader:1469:14)
+2025-01-14 15:31:32:     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10) {
+2025-01-14 15:31:32:   code: 'MODULE_NOT_FOUND',
+2025-01-14 15:31:32:   requireStack: [
+2025-01-14 15:31:32:     '/Users/taojiang/Documents/study/my-dapp-bff/src/imaginaryUncacheableRequireResolveScript'
+2025-01-14 15:31:32:   ]
+2025-01-14 15:31:32: }
