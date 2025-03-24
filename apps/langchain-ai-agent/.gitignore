@@ -1,5 +1,5 @@
-/dist
+dist/
+logs/
+.aws-sam/
 .env
 .env.*
-logs
-.aws-sam
