@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { Spin, Avatar, message } from "antd";
-import { LoadingOutlined, SendOutlined, SyncOutlined, UserOutlined } from "@ant-design/icons";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { Avatar, message } from "antd";
+import { SendOutlined, SyncOutlined, UserOutlined } from "@ant-design/icons";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter, useSearchParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
@@ -12,10 +12,8 @@ import { Suspense } from "react";
 import AiChatMessageVo from "@/defined-object/ai-chat-message-vo";
 
 // API 基础 URL
-const API_BASE_URL = process.env.NEXT_PUBLIC_LANGCHAIN_API_URL || "http://localhost:3000";
-
-console.log('LANGCHAIN_API_URL:', process.env.NEXT_PUBLIC_LANGCHAIN_API_URL);
-// const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_LANGCHAIN_API_URL || "http://localhost:3000";
 
 export default function AIChatPage() {
   return (
@@ -30,51 +28,54 @@ function AIChatContent() {
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [sessionId, setSessionId] = useState<string>("");
+  const [sessionId, setSessionId] = useState<string>(() => {
+    const sessionId = searchParams.get("sessionId");
+    return sessionId || "";
+  });
 
   // 初始化对话线程
   useEffect(() => {
     const initThread = async () => {
-      let sessionId = searchParams.get("sessionId");
-      if (!sessionId) {
-        sessionId = uuidv4();
-        router.push(`/ai-chat?sessionId=${sessionId}`);
+      let sid = sessionId;
+      if (!sid) {
+        sid = uuidv4();
+        router.push(`/ai-chat?sessionId=${sid}`);
       }
 
       try {
         // 获取历史消息
         const response = await fetch(
-          `${API_BASE_URL}/api/history?sessionId=${sessionId}`
+          `${API_BASE_URL}/api/history?sessionId=${sid}`
         );
         const data = await response.json();
 
         if (!data.data.length) {
           const initTalk = await fetch(
-            `${API_BASE_URL}/api/createTalk?sessionId=${sessionId}`
+            `${API_BASE_URL}/api/createTalk?sessionId=${sid}`
           );
           const initTalkData = await initTalk.json();
           setMessages([initTalkData.data]);
-        }
-
-        if (response.ok && data.data.length > 0) {
+        } else if (response.ok && data.data.length > 0) {
           setMessages(data.data);
         }
-        setSessionId(sessionId);
+        setSessionId(sid);
       } catch (error) {
         console.error("Failed to initialize chat:", error);
         messageApi.error("初始化聊天失败");
       }
     };
     initThread();
-  }, [searchParams]);
+  }, [sessionId]);
+
   // 自动滚动到最新消息
-  const scrollToBottom = () => {
+  const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  }, [messagesEndRef]);
 
   useEffect(() => {
     scrollToBottom();
@@ -105,7 +106,7 @@ function AIChatContent() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "text/event-stream",
+          Accept: "text/event-stream",
         },
         body: JSON.stringify({
           content: inputValue,
@@ -235,9 +236,12 @@ function AIChatContent() {
                         p: ({ node, children, ...props }) => {
                           // 检查是否为最后一个段落
                           // Get the parent element's children array
-                          const parentChildren = (node as any)?.parent?.children || [];
+                          const parentChildren =
+                            (node as any)?.parent?.children || [];
                           // Check if current node is the last paragraph
-                          const isLastParagraph = parentChildren.indexOf(node) === parentChildren.length - 1;
+                          const isLastParagraph =
+                            parentChildren.indexOf(node) ===
+                            parentChildren.length - 1;
                           return (
                             <p
                               className="whitespace-pre-wrap break-words"

@@ -6,34 +6,31 @@ import { InteractiveLogo } from "./logo";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-export default function HeaderS() {
+function LinkMenus() {
+  const searchParams = useSearchParams();
   return (
-    <Suspense fallback={<span></span>}>
-      <Header />
-    </Suspense>
+    <React.Fragment>
+      <Link href={`/?${searchParams.toString()}`}>
+        <span className="text-primary-dark text-1xl mr-1 hover:(bg-primary-dark text-white)">
+          BlogShop
+        </span>
+      </Link>
+      <Link href={`/ai-chat?${searchParams.toString()}`}>
+        <span className="text-primary-dark text-1xl mr-1">Learn English</span>
+      </Link>
+    </React.Fragment>
   );
 }
 
-function Header() {
-  const searchParams = useSearchParams();
+export default function Header() {
   return (
     <header className="z-50 flex justify-between p-5 w-full bg-opacity-70 backdrop-blur-xl">
       <div className="flex gap-4 items-center ">
         <InteractiveLogo />
         <nav className="flex gap-8">
-          <Link href={`/?${searchParams.toString()}`}>
-            <span className="text-primary-dark text-1xl mr-1 hover:(bg-primary-dark text-white)">
-              BlogShop
-            </span>
-          </Link>
-          {/* <Link href="/uniswap">
-            <span className="text-primary-dark text-1xl mr-1">Dex</span>
-          </Link> */}
-          <Link href={`/ai-chat?${searchParams.toString()}`}>
-            <span className="text-primary-dark text-1xl mr-1">
-              Learn English
-            </span>
-          </Link>
+        <Suspense fallback={<span></span>}>
+          <LinkMenus />
+        </Suspense>
         </nav>
       </div>
       <ConnectButton
