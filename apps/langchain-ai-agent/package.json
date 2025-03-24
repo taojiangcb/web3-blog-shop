@@ -11,7 +11,7 @@
     "start:dev": "pm2 start ecosystem.config.js",
     "start:prod": "pm2 start ecosystem.config.js --env production",
     "stop": "pm2 stop langchain-ai-agent",
-     "test": "jest"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +25,7 @@
     "@langchain/openai": "^0.4.3",
     "awilix": "^12.0.5",
     "awilix-koa": "^11.1.0",
+    "aws-lambda": "^1.0.7",
     "dotenv": "^16.4.7",
     "koa": "^2.16.0",
     "koa-bodyparser": "^4.4.1",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@shopify/jest-koa-mocks": "^5.3.1",
+    "@types/aws-lambda": "^8.10.147",
     "@types/jest": "^29.5.14",
     "@types/koa": "^2.15.0",
     "@types/koa-bodyparser": "^4.3.12",

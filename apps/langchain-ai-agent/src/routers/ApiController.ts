@@ -19,6 +19,8 @@ router.get("/list", async (ctx) => {
     data,
   };
 });
+
+
 router.post("/chat", async (ctx) => {
   const { content, sessionId } = ctx.request.body as unknown as ChatMessageVO;
   const msg: ChatMessageVO = {
@@ -28,6 +30,7 @@ router.post("/chat", async (ctx) => {
   };
 
   // 设置响应头为流式传输
+  ctx.status = 200;
   ctx.set({
     "Content-Type": "text/event-stream",
     "Cache-Control": "no-cache",
