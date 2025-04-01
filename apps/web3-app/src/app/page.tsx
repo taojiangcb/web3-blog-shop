@@ -19,7 +19,7 @@ export default () => {
           </p>
           <ParticlesGrid />
         </div>
-        <Footer/>
+        <Footer />
       </main>
     </main>
   );
