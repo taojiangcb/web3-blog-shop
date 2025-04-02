@@ -20,7 +20,7 @@ export default function ServerComponent() {
   }
 
   return (
-    <form action={myServerAction}>
+    <form action={async (formData: FormData) => { await myServerAction(formData); }}>
       <input type="text" name="some-input-value" />
       <button type="submit">Run Action</button>
     </form>
