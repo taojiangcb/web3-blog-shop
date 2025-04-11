@@ -24,7 +24,7 @@ const wordAnalysisChain = RunnableSequence.from([
 
   // 步骤3：解析输出
   {
-    analysis: (prev) => morphemeParser.parse(prev.content),
+    analysis: (prev) => morphemeParser.parseToFull(prev.content),
   },
 ]);
 

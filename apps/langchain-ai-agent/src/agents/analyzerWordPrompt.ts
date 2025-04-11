@@ -2,9 +2,13 @@ import {
   ChatPromptTemplate,
   SystemMessagePromptTemplate,
 } from "@langchain/core/prompts";
-import MorphemeAnalysis from "../interfaces/IMorphemeAnalysis";
+import {
+  MorphemeAnalysis,
+  SimpleMorphemeAnalysis,
+} from "../interfaces/IMorphemeAnalysis";
 import { z } from "zod";
 import { StructuredOutputParser } from "@langchain/core/output_parsers";
+import { expandMorpheme } from "../utils/morphemeTransformer";
 
 // 应当在文件顶部或配置模块中定义（用户当前缺失的部分）
 const EXAMPLE_CONFIG = {
@@ -13,40 +17,14 @@ const EXAMPLE_CONFIG = {
 } as const;
 
 // 示例响应生成函数
-const createSampleResponse = (): MorphemeAnalysis => ({
-  word: "unpredictable",
-  morphemes: {
-    prefixes: [
-      {
-        segment: "un-",
-        meaning: "否定",
-        // origin: "古英语",
-        // linguisticRegister: "formal",
-      },
-    ],
-    roots: [
-      {
-        segment: "dict",
-        meaning: "说",
-        // origin: "拉丁语",
-        // variantForms: ["dic", "dit"],
-      },
-    ],
-    suffixes: [
-      {
-        segment: "-able",
-        function: "形容词化",
-        meaning: "后缀含义",
-        // productivity: "high",
-      },
-    ],
+const createSampleResponse = (): SimpleMorphemeAnalysis => ({
+  w: "unpredictable",
+  m: {
+    p: [["un-", "否定"]],
+    r: [["dict", "说"]],
+    s: [["-able", "能够"]],
   },
-  usage: {
-    examples: Array(EXAMPLE_CONFIG.count).fill({
-      en: "The weather here is utterly unpredictable.",
-      zh: "这里的天气完全无法预测",
-    }),
-  },
+  e: [["The weather here is utterly unpredictable.", "这里的天气完全无法预测"]],
 });
 
 // 动态生成符合校验的示例
@@ -58,122 +36,75 @@ const escapeCurlyBraces = (str: string) =>
 
 // 强化提示词结构
 const analyzerWordPrompt = SystemMessagePromptTemplate.fromTemplate(`
-# 词源学分析协议
+As a morphological analysis expert, analyze the word "{word}" and output in the following JSON format:
 
-## 处理目标
-分析 {word} 的构词结构和语义演变
-
-## 处理规范
-[[形态切分]]
-1. 最大分词法识别词素
-2. 语素标注规则：
-   - 语源优先级：拉丁语 > 希腊语 > 古英语
-   - 非标准变体标记（如 phon → phono）
-   - 混合词源使用 "hybrid" 标记
-
-[[语义映射]]
-1. 字面含义组合
-2. 语义演变路径展示（使用 → 符号）
-3. 现代语义标注
-
-[[数据要求]]
-1. 当代例句：
-   - 数量：精确 ${EXAMPLE_CONFIG.count} 个
-   - 格式：严格中英对照
-
-## 输出规范
 \`\`\`json
 ${escapeCurlyBraces(sampleResponseStr)} 
 \`\`\`
 
-## 异常处理
-1. 词素冲突：保留所有可能性
-2. 解析失败：记录到 warnings 字段
-3. 位置信息：保留原始词素序列
+Requirements:
+1. Ensure accurate morpheme analysis
+2. Provide exactly ${EXAMPLE_CONFIG.count} example sentence(s)
+3. Strictly follow the output format
+`);
 
-开始分析：{word}`);
-
-// 定义核心数据结构
-const MorphemeSchema = z.object({
-  prefixes: z.array(
-    z.object({
-      segment: z.string(),
-      meaning: z.string(),
-      origin: z.string(),
-      linguisticRegister: z.enum(["formal", "informal"]).optional(),
-    })
-  ),
-  roots: z.array(
-    z.object({
-      segment: z.string(),
-      meaning: z.string(),
-      origin: z.string(),
-      variantForms: z.array(z.string()).optional(),
-    })
-  ),
-  suffixes: z.array(
-    z.object({
-      segment: z.string(),
-      function: z.string(),
-      productivity: z.enum(["high", "medium", "low"]).optional(),
-      origin: z.string().optional(), // 新增可选字段
-    })
-  ),
-});
-
-const CognateSchema = z.object({
-  word: z.string(),
-  type: z.enum(["noun", "verb", "adjective", "adverb"]), // 根据实际响应字段调整
-  meaning: z.string(),
-});
-
-const OutputSchema = z.object({
-  word: z.string(),
-  morphemes: MorphemeSchema,
-  semanticEvolution: z.object({
-    literal: z.string(),
-    modern: z.string(),
-    path: z.string().optional(), // 新增语义演变路径
+// 定义简化的数据结构
+const SimpleSchema = z.object({
+  w: z.string(),
+  m: z.object({
+    p: z.array(z.tuple([z.string(), z.string()])).optional(),
+    r: z.array(z.tuple([z.string(), z.string()])),
+    s: z.array(z.tuple([z.string(), z.string()])).optional(),
   }),
-  usage: z.object({
-    examples: z.array(
-      z.object({
-        en: z.string(),
-        zh: z.string(),
-      })
-    ),
-    cognates: z.array(CognateSchema), // 使用调整后的同源词模式
-  }),
-  warnings: z.array(z.string()).optional(),
+  e: z.array(z.tuple([z.string(), z.string()])),
 });
 
 // 创建自定义解析器
-class MorphemeParser extends StructuredOutputParser<typeof OutputSchema> {
+class MorphemeParser extends StructuredOutputParser<typeof SimpleSchema> {
   static formatInstructions() {
     return "Response must be valid JSON with markdown code block";
   }
 
-  async parse(text: string): Promise<z.infer<typeof OutputSchema>> {
+  // 先返回简化结构
+  async parse(text: string): Promise<z.infer<typeof SimpleSchema>> {
     try {
-      // 清洗响应内容
+      // 1. 清理 markdown 格式
       const cleaned = text
-        .replace(/```json/g, "")
-        .replace(/```/g, "")
+        .replace(/```json\s*/g, "")
+        .replace(/```\s*/g, "")
         .trim();
-      const json = JSON.parse(cleaned);
-      return json;
+
+      // 2. 解析 JSON
+      let json: unknown;
+      try {
+        json = JSON.parse(cleaned);
+      } catch (e) {
+        throw new Error(`JSON 解析失败: ${cleaned}`);
+      }
+
+      // 3. 验证简化结构
+      const result = SimpleSchema.safeParse(json);
+      if (!result.success) {
+        throw new Error(`数据结构验证失败: ${result.error.message}`);
+      }
+
+      // 4. 直接返回简化结构
+      return result.data;
     } catch (error) {
-      throw new Error(
-        `Failed to parse output: ${
-          error instanceof Error ? error.message : String(error)
-        }`
-      );
+      const errorMessage = error instanceof Error ? error.message : "未知错误";
+      throw new Error(`词素分析失败: ${errorMessage}`);
     }
+  }
+
+  // 添加新方法用于获取完整结构
+  async parseToFull(text: string): Promise<MorphemeAnalysis> {
+    const simpleResult = await this.parse(text);
+    return expandMorpheme(simpleResult);
   }
 }
 
 // 初始化解析器实例
-const morphemeParser = new MorphemeParser(OutputSchema);
+const morphemeParser = new MorphemeParser(SimpleSchema);
 
 // 优化后的提示模板
 const analyzerChartPrompt = ChatPromptTemplate.fromMessages([
