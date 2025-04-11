@@ -48,10 +48,10 @@ const sysPrompt = SystemMessagePromptTemplate.fromTemplate(
 `
 );
 
-const prompt = ChatPromptTemplate.fromMessages([
+const enChatPrompt = ChatPromptTemplate.fromMessages([
   sysPrompt,
   new MessagesPlaceholder("history_message"),
   ["human", "{input}"],
 ]);
 
-export { prompt };
+export { enChatPrompt };

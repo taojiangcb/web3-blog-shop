@@ -1,12 +1,13 @@
 import Router from "koa-router";
 import ApiService from "../services/ApiService";
-import ChatMessageVO from "../interfaces/ChatMessageVO";
+import ChatMessageVO from "../interfaces/IChatMessageVO";
 import {
   chainWithHistory,
   clearHistoryTalks,
   createTalk,
   getHistoryTalks,
-} from "../agents/en-agent";
+} from "../agents/enAgentChain";
+import { wordAnalysisChain } from "../agents/wordAnalyzerChain";
 
 const apiService = new ApiService();
 const router = new Router({
@@ -19,7 +20,6 @@ router.get("/list", async (ctx) => {
     data,
   };
 });
-
 
 router.post("/chat", async (ctx) => {
   const { content, sessionId } = ctx.request.body as unknown as ChatMessageVO;
@@ -34,10 +34,10 @@ router.post("/chat", async (ctx) => {
   ctx.set({
     "Content-Type": "text/event-stream",
     "Cache-Control": "no-cache",
-    "Connection": "keep-alive",
+    Connection: "keep-alive",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Headers": "*",
-    "X-Accel-Buffering": "no"  // 禁用 Nginx 缓冲（如果有使用）
+    "X-Accel-Buffering": "no", // 禁用 Nginx 缓冲（如果有使用）
   });
 
   try {
@@ -115,6 +115,40 @@ router.get("/clearTalk", async (ctx) => {
     sessionId: string;
   };
   await clearHistoryTalks(sessionId);
+});
+
+// 添加单词分析路由
+router.post("/analyze-word", async (ctx) => {
+  const { word } = ctx.request.body as { word: string };
+  
+  if (!word || typeof word !== "string") {
+    ctx.status = 400;
+    ctx.body = {
+      error: "请提供有效的单词",
+    };
+    return;
+  }
+
+  try {
+    const analysis = await wordAnalysisChain.invoke({
+      word: word.trim().toLowerCase(),
+    });
+
+    ctx.body = {
+      success: true,
+      data: analysis,
+    };
+  } catch (error: any) {
+    console.error("单词分析错误详情:", {
+      message: error.message,
+      stack: error.stack,
+      input: word,
+    });
+    ctx.status = 500;
+    ctx.body = {
+      error: "分析单词时发生错误：" + (error as Error).message,
+    };
+  }
 });
 
 export default router;

@@ -1,17 +1,10 @@
-import { ChatDeepSeek } from "@langchain/deepseek";
 import { RunnableWithMessageHistory } from "@langchain/core/runnables";
-import { prompt } from "./prompts";
+import { enChatPrompt } from "./enChatPrompt";
 import { AIMessage } from "@langchain/core/messages";
 import { deleteSession, getSession } from "./chainSessions";
+import deepSeek from "./LLM";
 
-const model = new ChatDeepSeek({
-  apiKey: process.env.DEEPSEEK_API_KEY,
-  temperature: 0.7,
-  modelName: "deepseek-chat",
-  streaming: true,
-});
-
-const chain = prompt.pipe(model);
+const chain = enChatPrompt.pipe(deepSeek);
 
 const getMessageSession = (_sessionId: string) => {
   const session = getSession(_sessionId);
