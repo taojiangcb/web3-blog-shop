@@ -2,7 +2,7 @@ import { RunnableWithMessageHistory } from "@langchain/core/runnables";
 import { enChatPrompt } from "./enChatPrompt";
 import { AIMessage } from "@langchain/core/messages";
 import { deleteSession, getSession } from "./chainSessions";
-import deepSeek from "./LLM";
+import {deepSeek} from "./LLM";
 
 const chain = enChatPrompt.pipe(deepSeek);
 

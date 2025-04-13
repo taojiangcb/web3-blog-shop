@@ -22,7 +22,7 @@ const createSampleResponse = (): SimpleMorphemeAnalysis => ({
   m: {
     p: [["un-", "否定"]],
     r: [["dict", "说"]],
-    s: [["-able", "能够"]],
+    s: [["-able", "能够", "adj/形容词"]],  // 更改为具体的词性标注
   },
   e: [["The weather here is utterly unpredictable.", "这里的天气完全无法预测"]],
 });
@@ -44,8 +44,9 @@ ${escapeCurlyBraces(sampleResponseStr)}
 
 Requirements:
 1. Ensure accurate morpheme analysis
-2. Provide exactly ${EXAMPLE_CONFIG.count} example sentence(s)
-3. Strictly follow the output format
+2. For suffixes, provide the part of speech (e.g., "noun", "verb", "adjective", "adverb") as the third element
+3. Provide exactly ${EXAMPLE_CONFIG.count} example sentence(s)
+4. Strictly follow the output format
 `);
 
 // 定义简化的数据结构
@@ -54,7 +55,7 @@ const SimpleSchema = z.object({
   m: z.object({
     p: z.array(z.tuple([z.string(), z.string()])).optional(),
     r: z.array(z.tuple([z.string(), z.string()])),
-    s: z.array(z.tuple([z.string(), z.string()])).optional(),
+    s: z.array(z.tuple([z.string(), z.string(), z.string()])).optional(),
   }),
   e: z.array(z.tuple([z.string(), z.string()])),
 });

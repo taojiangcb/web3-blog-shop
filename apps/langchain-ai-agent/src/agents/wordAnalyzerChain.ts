@@ -2,7 +2,7 @@ import {
   RunnableSequence,
   RunnablePassthrough,
 } from "@langchain/core/runnables";
-import deepSeek, { openAI } from "./LLM";
+import { openAI } from "./LLM";
 import { analyzerChartPrompt, morphemeParser } from "./analyzerWordPrompt";
 
 // 正确配置的调用链

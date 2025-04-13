@@ -1,11 +1,11 @@
 export interface SimpleMorphemeAnalysis {
-  w: string;  // word
+  w: string; // word
   m: {
-    p?: [string, string][],  // [segment, meaning]
-    r: [string, string][],   // [segment, meaning]
-    s?: [string, string][]   // [segment, meaning]
+    p?: [string, string][]; // [segment, meaning]
+    r: [string, string][]; // [segment, meaning]
+    s?: [string, string, string][]; // [segment, meaning, function]
   };
-  e: [string, string][];     // examples [en, zh]
+  e: [string, string][]; // examples [en, zh]
 }
 
 export interface MorphemeAnalysis {
@@ -21,8 +21,8 @@ export interface MorphemeAnalysis {
     }>;
     suffixes: Array<{
       segment: string;
-      function: string;
       meaning: string;
+      function: string;
     }>;
   };
   usage: {

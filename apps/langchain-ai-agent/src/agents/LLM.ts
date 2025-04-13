@@ -1,15 +1,14 @@
 import { ChatDeepSeek } from "@langchain/deepseek";
 import { AzureChatOpenAI, ChatOpenAI } from "@langchain/openai";
-import { config } from "dotenv";
 
-const deepSeek = new ChatDeepSeek({
+export const deepSeek = new ChatDeepSeek({
   apiKey: process.env.DEEPSEEK_API_KEY,
   temperature: 0.7,
   modelName: "deepseek-chat",
   streaming: true,
 });
 
-export default deepSeek;
+
 
 export const openAI = new AzureChatOpenAI({
   azureOpenAIApiKey: process.env.AZURE_OPENAI_API_KEY,
