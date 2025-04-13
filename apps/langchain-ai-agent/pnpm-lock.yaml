@@ -32,6 +32,9 @@ importers:
       aws-lambda:
         specifier: ^1.0.7
         version: 1.0.7
+      aws-sdk:
+        specifier: ^2.1692.0
+        version: 2.1692.0
       dotenv:
         specifier: ^16.4.7
         version: 16.4.7

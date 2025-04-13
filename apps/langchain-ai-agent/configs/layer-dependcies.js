@@ -6,6 +6,8 @@ module.exports = [
   '@langchain/core',
   '@langchain/openai',
   '@langchain/deepseek',
+  '@langchain/openai',
+  'aws-lambda',
   'awilix',
   'awilix-koa',
   'dotenv',
@@ -15,5 +17,6 @@ module.exports = [
   'lodash',
   'awilix',
   'awilix-koa',
-  'serverless-http'
+  'serverless-http',
+  'aws-sdk'
 ];

@@ -38,8 +38,7 @@ Resources:
       BinaryMediaTypes:
         - 'image/*'
         - 'multipart/form-data'
-        - 'text/event-stream'  # 添加这行
-        # 添加以下配置
+        - 'text/event-stream'
       EndpointConfiguration:
         Type: REGIONAL
       MinimumCompressionSize: 0
@@ -61,6 +60,8 @@ Resources:
         - S3CrudPolicy:
             BucketName: aladdinagi-assets
         - VPCAccessPolicy: {}
+        - DynamoDBCrudPolicy:
+            TableName: word_analysis_cache
       Events:
         ApiEvent:
           Type: Api
@@ -71,6 +72,21 @@ Resources:
             Auth:
               Authorizer: NONE
       AutoPublishAlias: live
+
+  WordAnalysisTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: word_analysis_cache
+      AttributeDefinitions:
+        - AttributeName: word
+          AttributeType: S
+      KeySchema:
+        - AttributeName: word
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
 
 Outputs:
   ApiEndpoint:
