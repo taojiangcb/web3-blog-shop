@@ -69,28 +69,40 @@ class MorphemeParser extends StructuredOutputParser<typeof SimpleSchema> {
   // 先返回简化结构
   async parse(text: string): Promise<z.infer<typeof SimpleSchema>> {
     try {
-      // 1. 清理 markdown 格式
+      // 1. 清理 markdown 格式并提取 JSON
       const cleaned = text
         .replace(/```json\s*/g, "")
         .replace(/```\s*/g, "")
+        .replace(/\\n/g, "\n")  // 处理转义的换行符
+        .replace(/\\"/g, '"')   // 处理转义的引号
         .trim();
-
-      // 2. 解析 JSON
+  
+      // 2. 尝试提取 JSON 字符串
+      const jsonMatch = cleaned.match(/({[\s\S]*})/);
+      if (!jsonMatch) {
+        console.error('无法提取 JSON:', cleaned);
+        throw new Error('无法找到有效的 JSON 格式');
+      }
+  
+      // 3. 解析 JSON
       let json: unknown;
       try {
-        json = JSON.parse(cleaned);
+        const jsonStr = jsonMatch[1].trim();
+        json = JSON.parse(jsonStr);
       } catch (e) {
-        throw new Error(`JSON 解析失败: ${cleaned}`);
+        console.error('JSON 解析错误:', e);
+        throw new Error(`JSON 解析失败: ${jsonMatch[1]}`);
       }
 
       // 3. 验证简化结构
-      const result = SimpleSchema.safeParse(json);
-      if (!result.success) {
-        throw new Error(`数据结构验证失败: ${result.error.message}`);
-      }
+      // const result = SimpleSchema.safeParse(json);
+      // if (!result.success) {
+      //   throw new Error(`数据结构验证失败: ${result.error.message}`);
+      // }
 
-      // 4. 直接返回简化结构
-      return result.data;
+      // // 4. 直接返回简化结构
+      // return result.data;
+      return json as z.infer<typeof SimpleSchema>;
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "未知错误";
       throw new Error(`词素分析失败: ${errorMessage}`);

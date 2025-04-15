@@ -12,7 +12,25 @@ jest.mock("@langchain/deepseek", () => ({
   }))
 }));
 
+
+
 // Mock 依赖
+// Mock 环境变量
+beforeAll(() => {
+  process.env.AZURE_OPENAI_API_KEY = 'test-key';
+  process.env.AZURE_OPENAI_API_INSTANCE_NAME = 'test-instance';
+  process.env.AZURE_OPENAI_API_DEPLOYMENT_NAME = 'test-deployment';
+  process.env.AZURE_OPENAI_API_VERSION = '2023-07-01-preview';
+});
+
+// Mock Azure OpenAI
+jest.mock("@langchain/openai", () => ({
+  AzureChatOpenAI: jest.fn().mockImplementation(() => ({
+    stream: jest.fn().mockResolvedValue({
+      content: "测试响应"
+    })
+  }))
+}));
 jest.mock("../src/agents/enAgentChain");
 jest.mock("../src/agents/wordAnalyzerChain");
 // 修改 ApiService mock
