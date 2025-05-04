@@ -2,7 +2,7 @@ import {
   RunnableSequence,
   RunnablePassthrough,
 } from "@langchain/core/runnables";
-import { openAI } from "./LLM";
+import { openAI, deepSeek } from "./LLM";
 import { analyzerChartPrompt, morphemeParser } from "./analyzerWordPrompt";
 import { DynamoDB } from "aws-sdk";
 
@@ -90,7 +90,7 @@ const wordAnalysisChain = RunnableSequence.from([
       }
 
       // 缓存未命中，调用模型
-      const response = await openAI.invoke(prev.messages);
+      const response = await deepSeek.invoke(prev.messages);
       const contentString =
         typeof response.content === "string"
           ? response.content
@@ -98,7 +98,6 @@ const wordAnalysisChain = RunnableSequence.from([
 
       // 保存到缓存
       await saveWordAnalysisToCache(word, contentString);
-
       return contentString;
     },
   },
