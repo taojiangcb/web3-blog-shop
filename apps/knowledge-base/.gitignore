@@ -1,0 +1,6 @@
+dist/
+logs/
+coverage/
+.aws-sam/
+.env
+.env.*

@@ -1,0 +1,22 @@
+module.exports = [
+  '@koa/cors',
+  'koa-cors',
+  '@langchain/community',
+  'langchain',
+  '@langchain/core',
+  '@langchain/openai',
+  '@langchain/deepseek',
+  '@langchain/openai',
+  'aws-lambda',
+  'awilix',
+  'awilix-koa',
+  'dotenv',
+  'koa',
+  'koa-bodyparser',
+  'koa-router',
+  'lodash',
+  'awilix',
+  'awilix-koa',
+  'serverless-http',
+  'aws-sdk'
+];
